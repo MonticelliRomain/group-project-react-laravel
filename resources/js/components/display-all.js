@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { appGetFutureEvent } from './helpers';
+import { appGetFutureEvent } from './util/helpers';
 import posed from 'react-pose';
 import { BrowserRouter as Router, Route, Link, Switch } from 'react-router-dom'
 import { rgba } from 'style-value-types';

@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { appLogout } from './helpers';
+import { appLogout } from './util/helpers';
 
 export default class Logout extends Component {
 
