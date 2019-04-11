@@ -15,3 +15,5 @@ class EventSeeder extends Seeder
         factory(Event::class, 5)->create();
     }
 }
+
+
