@@ -1,17 +1,17 @@
 import React from 'react'
 import { BrowserRouter as Router, Route, Link, Switch } from 'react-router-dom';
-import CreateAccount from './components/create-account';
-import Create from './components/create';
-import DisplayAll from './components/display-all';
-import DisplayEvent from './components/display-event';
-import DisplayPast from './components/display-past';
-import Edit from './components/edit';
-import MyEvents from './components/my-events';
-import MyParticipation from './components/my-participations';
-import Login from './components/login';
-import Logout from './components/logout';
-import SubscriptionEvent from './components/subscription-event';
-import UnsubscriptionEvent from './components/unsuscription-event';
+import CreateAccount from './create-account';
+import Create from './create';
+import DisplayAll from './display-all';
+import DisplayEvent from './display-event';
+import DisplayPast from './display-past';
+import Edit from './edit';
+import MyEvents from './my-events';
+import MyParticipation from './my-participations';
+import Login from './login';
+import Logout from './logout';
+import SubscriptionEvent from './subscription-event';
+import UnsubscriptionEvent from './unsuscription-event';
 import Home from './Home'
 import posed, { PoseGroup } from 'react-pose';
 
