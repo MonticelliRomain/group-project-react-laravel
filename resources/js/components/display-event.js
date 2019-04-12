@@ -47,6 +47,8 @@ export default class DisplayEvent extends Component {
   }//\end fct handleChange
 
   render() {
+    console.log(this.state.eventList);
+    
     const { eventList } = this.state;
     const authorArticle = this.state.eventList.map(item => item.author);
     const authorId = this.state.eventList.map(item => item.id);
@@ -56,7 +58,7 @@ export default class DisplayEvent extends Component {
     let suscribeButton;
       if (sessionStorage.getItem("user-name-storage") === JSON.stringify(authorArticle[0])) {
         editButton = (
-          <Link variant="light" className="btn btn-light my-2" to={"/edit/"+idRoute} >Edit this event</Link>
+          <Link variant="light" className="btn btn-light my-2" to={"/edit-"+idRoute} >Edit this event</Link>
         )
       }
       if (sessionStorage.getItem("token-storage") !== null) {
