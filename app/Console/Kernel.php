@@ -5,6 +5,11 @@ namespace App\Console;
 use Illuminate\Console\Scheduling\Schedule;
 use Illuminate\Foundation\Console\Kernel as ConsoleKernel;
 
+use App\Event;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Mail;
+use App\Mail\Reminder;
+
 class Kernel extends ConsoleKernel
 {
     /**
@@ -24,8 +29,22 @@ class Kernel extends ConsoleKernel
      */
     protected function schedule(Schedule $schedule)
     {
-        // $schedule->command('inspire')
-        //          ->hourly();
+        \Log::info('In Kernel schedule function');
+        $reminder = DB::table('events')
+                        ->join('users' , 'events.author', '=','users.id' )
+                        ->select('users.email AS email', 'events.name', 'events.author', 'reminded')
+                        ->where('events.reminder', '<=', 'NOW()')
+                        ->where('reminded', 'false')
+                        ->get();
+                    DB::table('events')
+                        ->select('reminded')
+                        ->where('events.reminder', '<=', 'NOW()')
+                        ->update(['reminded' => 'true']);
+       
+        foreach ($reminder as $reminders) {
+            Mail::to($reminders->email)->send(new Reminder());
+            
+        }
     }
 
     /**
