@@ -20,6 +20,7 @@ services:
       POSTGRES_PASSWORD: becode
       POSTGRES_DB: becode
 
+
   # Un serveur Adminer pour pouvoir tester les fonctionnalités de la base de données et
   # faire du debugging. Il est joignable avec un simple browser en utilisant http://localhost:9000 .
   #
