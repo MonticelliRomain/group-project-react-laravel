@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { appGetPastEvent } from './helpers';
+import { appGetPastEvent } from './util/helpers';
 import posed from 'react-pose';
 
 const Box = posed.div({

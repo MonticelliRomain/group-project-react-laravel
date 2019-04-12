@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
-import { appGetEventByID } from './helpers';
-import { suscribeEvent } from './helpers';
-import { unsuscribeEvent } from './helpers';
+import { appGetEventByID } from './util/helpers';
+import { suscribeEvent } from './util/helpers';
+import { unsuscribeEvent } from './util/helpers';
 import { BrowserRouter as Router, Route, Link, Switch } from 'react-router-dom';
 
 export default class DisplayEvent extends Component {

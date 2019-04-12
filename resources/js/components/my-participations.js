@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
-import { appGetMyParticipations } from './helpers';
-import CarouselContent from './carousel'
+import { appGetMyParticipations } from './util/helpers';
+import CarouselContent from './util/carousel'
 import Jumbotron from 'react-bootstrap/Jumbotron'
 import Button from 'react-bootstrap/Button'
 import axios from 'axios'

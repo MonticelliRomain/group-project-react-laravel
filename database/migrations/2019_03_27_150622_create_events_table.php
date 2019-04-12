@@ -22,7 +22,7 @@ class CreateEventsTable extends Migration
             $table->text('description')->nullable();
             $table->dateTime('reminder')->nullable();
             $table->text('image_url')->nullable();
-            $table->boolean('reminded');
+            $table->boolean('reminded')->nullable();
             $table->foreign('author')->references('id')->on('users');
         });
     }
