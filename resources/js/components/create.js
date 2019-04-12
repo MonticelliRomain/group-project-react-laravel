@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import Form from 'react-bootstrap/Form'
 import { Calendar } from 'primereact/calendar';
 import Button from 'react-bootstrap/Button';
+import base64 from 'react-native-base64'
 import { appAddEvent } from './util/helpers';
 import { convertDate } from './util/helpers';
 
@@ -25,12 +26,14 @@ export default class Create extends Component {
     maxDate.setFullYear(nextYear);
     this.validateForm = this.validateForm.bind(this);
     this.handleChange = this.handleChange.bind(this);
+    this.handleImgChange = this.handleImgChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
     this.dateTemplate = this.dateTemplate.bind(this);
     this.state = {
       name: "",
       description: "",
       image_url: "",
+      // video_url:"",
       date_event: today,
       reminder: null,
       thisDay: today,
@@ -47,6 +50,14 @@ export default class Create extends Component {
   }//\end fct validateForm
 
   /*onchanges*/
+  handleImgChange(event){
+    const target = event.target;
+    const value = base64.encode(target.value);
+    // const value = target.value;
+    const name = target.name;
+    this.setState({ image_url: value });
+  }
+
   handleChange(event) {
     //this.setState({ [event.target.name]: event.target.value });
     const target = event.target;
@@ -95,6 +106,8 @@ export default class Create extends Component {
   }
 
   render() {
+    console.log(this.state);
+
     return (
       <Form onSubmit={this.handleSubmit} className="m-5">
         <h1>Create new Event</h1>
@@ -122,7 +135,7 @@ export default class Create extends Component {
             name="image_url"
             type="file"
             placeholder="paste an url"
-            onChange={this.handleChange}
+            onChange={this.handleImgChange}
           />
         </Form.Group>
         <div className="p-col-12 mt-3">

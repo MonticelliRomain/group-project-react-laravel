@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { appGetFutureEvent } from './util/helpers';
 import posed from 'react-pose';
-import { BrowserRouter as Router, Route, Link, Switch } from 'react-router-dom'
+import { Link } from 'react-router-dom'
 import { rgba } from 'style-value-types';
 
 const Box = posed.div({
@@ -75,7 +75,7 @@ export default class DisplayAll extends Component {
                   {item.description}
                 </div>
                 <p>
-                  <Link variant="light" className="btn btn-light my-2 shadow" to={"/display-event/" + item.id} >More informations</Link>
+                  <Link variant="light" className="btn btn-light my-2 shadow" to={"/display-event-" + item.id} >More informations</Link>
                 </p>
               </Box>
             </div>

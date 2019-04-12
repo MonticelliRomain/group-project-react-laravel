@@ -47,6 +47,8 @@ export default class DisplayEvent extends Component {
   }//\end fct handleChange
 
   render() {
+    console.log(this.state);
+
     const { eventList } = this.state;
     const authorArticle = this.state.eventList.map(item => item.author);
     const authorId = this.state.eventList.map(item => item.id);
@@ -56,7 +58,7 @@ export default class DisplayEvent extends Component {
     let suscribeButton;
       if (sessionStorage.getItem("user-name-storage") === JSON.stringify(authorArticle[0])) {
         editButton = (
-          <Link variant="light" className="btn btn-light my-2" to={"/edit/"+idRoute} >Edit this event</Link>
+          <Link variant="light" className="btn btn-light my-2" to={"/edit-"+idRoute} >Edit this event</Link>
         )
       }
       if (sessionStorage.getItem("token-storage") !== null) {
@@ -76,13 +78,13 @@ export default class DisplayEvent extends Component {
 
           <div>
             {this.state.eventList.map(item =>
-              <div key={item.id} className="w-100  ">
+              <div key={this.state.idEvent} className="w-100  ">
 
 
                   <h1 className="text-center border-bottom">{item.name}</h1>
                   <h4 className="boxDate text-center shadow">{item.date_event}</h4>
                   <div className="imgDivSingle mt-5">
-                <img className="imgDisplaySingle ml-auto mr-auto" src={item.image_url} alt="image event"/>
+                <img className="imgDisplaySingle ml-auto mr-auto" src={base64.decode(item.image_url)} alt="image event"/>
                 </div>
                   <div className="mt-5 text-center boxDescriptionSingle shadow">
                     {item.description}
@@ -94,6 +96,13 @@ export default class DisplayEvent extends Component {
 
                 </div>
                 <div>{ editButton }</div>
+              </div>
+            )}
+            {this.state.suscribersList.map(participant=>
+              <div key={participant.id}>
+                <div className="mt-5 text-center boxDescriptionSingle shadow">
+                  {participant.username}
+                </div>
               </div>
             )}
           </div>
