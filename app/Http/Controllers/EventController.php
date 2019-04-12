@@ -28,18 +28,18 @@ class EventController extends Controller
     public function store(Request $request)
     {
 
-        $this->validate($request, [
-                'image_url' => 'required',
-                'image_url.*' => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048'
-        ]);
+        // $this->validate($request, [
+        //         'image_url' => 'required',
+        //         'image_url.*' => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048'
+        // ]);
         
-         if($request->hasfile('image_url'))
-         {
-            $file = $request->file('image_url');
-            $name=time().$file->getClientOriginalName();
-            $file->move(public_path().'/images/', $name);
-        }
-
+        //  if($request->hasfile('image_url'))
+        //  {
+        //     $file = $request->file('image_url');
+        //     $name=time().$file->getClientOriginalName();
+        //     $file->move(public_path().'/images/', $name);
+        // }
+        
         $params = $request->all();
         $params['author'] = auth('api')->user()->id;
         $event = Event::create($params);
