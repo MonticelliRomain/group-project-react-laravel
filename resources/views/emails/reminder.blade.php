@@ -50,7 +50,7 @@
 </head>
 
 <body>
-    <h2>Hello {{$user['name']}} !</h2>
+    <h2>Hello omg !</h2>
     <br />
     <img src="https://zupimages.net/up/19/15/xpo1.png" alt="logo EventDab" width="100px" height="100px">
     <article>

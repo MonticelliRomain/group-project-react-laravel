@@ -33,7 +33,7 @@ class Kernel extends ConsoleKernel
         \Log::info('In Kernel schedule function');
         $reminder = DB::table('events')
                         ->join('users' , 'events.author', '=','users.id' )
-                        ->select('users.email AS email', 'events.name', 'events.author', 'reminded')
+                        ->select('users.email AS email', 'users.name AS name')
                         ->where('events.reminder', '<=', 'NOW()')
                         ->where('reminded', 'false')
                         ->get();
@@ -43,7 +43,7 @@ class Kernel extends ConsoleKernel
                         ->update(['reminded' => 'true']);
        
         foreach ($reminder as $reminders) {
-            Mail::to($reminders->email)->send(new Reminder());
+            Mail::to($reminders->email)->send(new Reminder($reminders->name));
             
         }
     }
