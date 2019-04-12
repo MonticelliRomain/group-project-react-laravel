@@ -1,3 +1,4 @@
+// Does not seem to be used.
 import React, { Component } from 'react';
 import { Calendar } from 'primereact/calendar';
 

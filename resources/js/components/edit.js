@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
-import { updateEvent } from './helpers';
-import { appGetEventByIDEdit } from './helpers';
-import { convertDate } from './helpers';
+import { updateEvent } from './util/helpers';
+import { appGetEventByIDEdit } from './util/helpers';
+import { convertDate } from './util/helpers';
 import Form from 'react-bootstrap/Form';
 import { Calendar } from 'primereact/calendar';
 import Button from 'react-bootstrap/Button';
