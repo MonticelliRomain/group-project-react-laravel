@@ -1,0 +1,2 @@
+from create line 124
+pattern="(http(s?):)([/|.|\w|\s|-])*\.(?:jpg|gif|png)"
