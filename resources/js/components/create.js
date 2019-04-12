@@ -120,8 +120,7 @@ export default class Create extends Component {
           <Form.Label>Add an image</Form.Label>
           <Form.Control
             name="image_url"
-            type="url"
-            pattern="(http(s?):)([/|.|\w|\s|-])*\.(?:jpg|gif|png)"
+            type="file"
             placeholder="paste an url"
             onChange={this.handleChange}
           />
