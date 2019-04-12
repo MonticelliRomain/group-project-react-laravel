@@ -52,8 +52,8 @@ export default class Create extends Component {
   /*onchanges*/
   handleImgChange(event){
     const target = event.target;
-    const value = base64.encode(target.value);
-    // const value = target.value;
+    // const value = base64.encode(target.value);
+    const value = target.value;
     const name = target.name;
     this.setState({ image_url: value });
   }
@@ -90,6 +90,7 @@ export default class Create extends Component {
     let myJSON = { "name": this.state.name, "date_event": convertedDate, "description": this.state.description, "reminder": convertedReminder, "image_url": image_url }
     //console.log(myJSON);
     event.preventDefault()
+    console.log(myJSON);
     appAddEvent(myJSON);
   }//\end fct handleSubmit
 
@@ -106,7 +107,7 @@ export default class Create extends Component {
   }
 
   render() {
-    console.log(this.state);
+    // console.log(this.state);
 
     return (
       <Form onSubmit={this.handleSubmit} className="m-5">
