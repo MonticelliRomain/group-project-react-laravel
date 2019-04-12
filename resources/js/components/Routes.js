@@ -1,5 +1,8 @@
 import React from 'react'
 import { Route, Switch } from 'react-router-dom';
+import posed, { PoseGroup } from 'react-pose';
+
+// import components
 import CreateAccount from './create-account';
 import Create from './create';
 import DisplayAll from './display-all';
@@ -13,7 +16,6 @@ import Logout from './logout';
 import SubscriptionEvent from './subscription-event';
 import UnsubscriptionEvent from './unsuscription-event';
 import Home from './Home'
-import posed, { PoseGroup } from 'react-pose';
 
 const RouteContainer = posed.div({
   enter: { x:0, opacity: 1, delay: 100, beforeChildren: true },

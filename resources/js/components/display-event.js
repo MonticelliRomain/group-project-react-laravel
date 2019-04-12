@@ -47,8 +47,8 @@ export default class DisplayEvent extends Component {
   }//\end fct handleChange
 
   render() {
-    console.log(this.state.eventList);
-    
+    console.log(this.state);
+
     const { eventList } = this.state;
     const authorArticle = this.state.eventList.map(item => item.author);
     const authorId = this.state.eventList.map(item => item.id);
@@ -78,7 +78,7 @@ export default class DisplayEvent extends Component {
 
           <div>
             {this.state.eventList.map(item =>
-              <div key={item.id} className="w-100  ">
+              <div key={this.state.idEvent} className="w-100  ">
 
 
                   <h1 className="text-center border-bottom">{item.name}</h1>
@@ -96,6 +96,13 @@ export default class DisplayEvent extends Component {
 
                 </div>
                 <div>{ editButton }</div>
+              </div>
+            )}
+            {this.state.suscribersList.map(participant=>
+              <div key={participant.id}>
+                <div className="mt-5 text-center boxDescriptionSingle shadow">
+                  {participant.username}
+                </div>
               </div>
             )}
           </div>
