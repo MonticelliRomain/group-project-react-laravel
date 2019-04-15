@@ -61,10 +61,8 @@ export default class Create extends Component {
     let reader = new FileReader();
     let file = event.target.files[0];
     let output = document.getElementById('output');
-    console.log("reader ",reader,"file ", file);
 
     reader.onloadend = () => {
-      console.log("reader fired");
       this.setState({
           file: file,
           imagePreviewUrl: reader.result,
@@ -92,10 +90,10 @@ export default class Create extends Component {
 
   /* date conversion + submit*/
   handleSubmit() {
-    let image_url = this.state.image_url;
-    if (image_url === "") {
-      image_url = "https://zupimages.net/up/19/15/xpo1.png";
-    }
+    let image_url = "data:image/jpeg;base64,"+this.state.image_url;
+    // if (image_url === "") {
+    //   image_url = "https://zupimages.net/up/19/15/xpo1.png";
+    // }
     let convertedDate = convertDate(this.state.date_event);
     let convertedReminder = "";
     let datetest = new Date();
@@ -131,8 +129,7 @@ export default class Create extends Component {
   }
 
   render() {
-    console.log("img_url", this.state.image_url);
-
+  console.log("img "+ this.state.image_url);
     return (
       <>
         <Form onSubmit={this.handleSubmit} className="m-5">
