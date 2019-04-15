@@ -40,12 +40,14 @@ Route::middleware('auth:api')->get('/myEvents', 'EventController@myEvent')->name
 Route::middleware('auth:api')->put('/event/{id}', 'EventController@update')->name('event.update');
 //post event
 Route::middleware('auth:api')->post('/event', 'EventController@store')->name('event.create');
+//post event/emailFriends
+Route::middleware('auth:api')->post('/event/email', 'EventController@emailFriends')->name('event.emailFriends');
 
 //------ ROUTE LIST OF PARTICIPANT ------
 //get my participation to event
 Route::middleware('auth:api')->get('/myParticipation', 'ListOfParticipantController@myParticipation')->name('event.participation');
 //post inscription to event
-Route::middleware('auth:api')->post('/inscription/{id}', 'ListOfParticipantController@store')->name('event.inscription');
+Route::middleware('auth:api')->post('/inscription/{event}', 'ListOfParticipantController@store')->name('event.inscription');
 //post remove inscription
 Route::middleware('auth:api')->post('/unsubscribe/{id}', 'ListOfParticipantController@destroy')->name('event.unsub');
 
