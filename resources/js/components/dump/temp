@@ -9,3 +9,14 @@ from add event in postman
 	"reminder" : "2019-03-29 10:00:00",
 	"image_url": "https://st3.depositphotos.com/3001967/19099/v/600/depositphotos_190997272-stock-video-sad-lonely-man-in-party.jpg"
 }
+
+//from create, input for the img upload
+<Form.Group controlId="exampleForm.ControlInput1">
+	<Form.Label>Add an image</Form.Label>
+	<Form.Control
+		name="image_url"
+		type="file"
+		placeholder="paste an url"
+		onChange={this.handleImgChange}
+	/>
+</Form.Group>

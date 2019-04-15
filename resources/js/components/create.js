@@ -7,6 +7,7 @@ import Container from 'react-bootstrap/Container';
 import base64 from 'react-native-base64'
 import { appAddEvent } from './util/helpers';
 import { convertDate } from './util/helpers';
+import { updateImageDisplay } from './util/helpers';
 
 
 export default class Create extends Component {
@@ -28,13 +29,15 @@ export default class Create extends Component {
     maxDate.setFullYear(nextYear);
     this.validateForm = this.validateForm.bind(this);
     this.handleChange = this.handleChange.bind(this);
-    this.handleImgChange = this.handleImgChange.bind(this);
+    // this.handleImgChange = this.handleImgChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
     this.dateTemplate = this.dateTemplate.bind(this);
     this.state = {
       name: "",
       description: "",
       image_url: "",
+      file:"",
+      imagePreviewUrl:"",
       video_url:"",
       date_event: today,
       reminder: null,
@@ -54,11 +57,24 @@ export default class Create extends Component {
 
   /*onchanges*/
   handleImgChange(event){
-    const target = event.target;
-    // const value = base64.encode(target.value);
-    const value = target.value;
-    const name = target.name;
-    this.setState({ image_url: value });
+    event.preventDefault();
+    let reader = new FileReader();
+    let file = event.target.files[0];
+    let output = document.getElementById('output');
+    console.log("reader ",reader,"file ", file);
+
+    reader.onloadend = () => {
+      console.log("reader fired");
+      this.setState({
+          file: file,
+          imagePreviewUrl: reader.result,
+      });
+      output.src = reader.result
+      this.setState({
+        image_url : reader.result.substr(reader.result.indexOf(',')+1)
+      });
+    }
+    reader.readAsDataURL(file);
   }//\end fct handleImgChange
 
   handleChange(event) {
@@ -90,7 +106,12 @@ export default class Create extends Component {
     else {
       convertedReminder = "";
     }
-    let myJSON = { "name": this.state.name, "date_event": convertedDate, "description": this.state.description, "reminder": convertedReminder, "image_url": image_url }
+    let myJSON = {
+      "name": this.state.name,
+      "date_event": convertedDate,
+      "description": this.state.description,
+      "reminder": convertedReminder,
+      "image_url": image_url }
     //console.log(myJSON);
     event.preventDefault()
     console.log(myJSON);
@@ -110,7 +131,7 @@ export default class Create extends Component {
   }
 
   render() {
-    // console.log(this.state.media_pick);
+    console.log("img_url", this.state.image_url);
 
     return (
       <>
@@ -156,9 +177,9 @@ export default class Create extends Component {
             <Form.Control
               name="image_url"
               type="file"
-              placeholder="paste an url"
-              onChange={this.handleImgChange}
+              onChange={(e)=>this.handleImgChange(e)}
             />
+            <div id="preview"><img id="output" alt=""/></div>
           </Form.Group>
           :
           <Form.Group controlId="exampleForm.ControlInput1">
