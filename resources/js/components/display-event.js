@@ -4,6 +4,9 @@ import { suscribeEvent } from './util/helpers';
 import { unsuscribeEvent } from './util/helpers';
 import { BrowserRouter as Router, Route, Link, Switch } from 'react-router-dom';
 
+// import copmponents
+import OpenStreetMap from './OpenStreetMap';
+
 export default class DisplayEvent extends Component {
 
   constructor(props) {
