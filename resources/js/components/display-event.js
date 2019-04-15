@@ -47,8 +47,6 @@ export default class DisplayEvent extends Component {
   }//\end fct handleChange
 
   render() {
-    console.log(this.state.eventList);
-    
     const { eventList } = this.state;
     const authorArticle = this.state.eventList.map(item => item.author);
     const authorId = this.state.eventList.map(item => item.id);
