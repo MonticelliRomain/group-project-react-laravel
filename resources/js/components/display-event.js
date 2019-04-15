@@ -4,6 +4,9 @@ import { suscribeEvent } from './util/helpers';
 import { unsuscribeEvent } from './util/helpers';
 import { BrowserRouter as Router, Route, Link, Switch } from 'react-router-dom';
 
+// import components
+import OpenStreetMap from './OpenStreetMap';
+
 export default class DisplayEvent extends Component {
 
   constructor(props) {
@@ -86,6 +89,9 @@ export default class DisplayEvent extends Component {
                 </div>
                   <div className="mt-5 text-center boxDescriptionSingle shadow">
                     {item.description}
+                  </div>
+                  <div>
+                    <OpenStreetMap >
                   </div>
                 <p className="boxDate shadow text-center my-3">Added By: {item.author}</p>
                 <div className="p-col-12 mt-3">
