@@ -13,8 +13,8 @@ class Event extends Model
         'author',
         'description',
         'reminder',
-        'image_url',
-        'reminded'
+        'image_url'
+        
 
     ];
 

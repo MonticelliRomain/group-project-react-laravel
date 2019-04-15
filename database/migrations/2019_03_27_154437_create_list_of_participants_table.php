@@ -18,6 +18,7 @@ class CreateListOfParticipantsTable extends Migration
             $table->timestamps();
             $table->integer('event');
             $table->integer('participant');
+            $table->boolean('reminded')->nullable();
             $table->foreign('event')->references('id')->on('events');
             $table->foreign('participant')->references('id')->on('users');
         });
