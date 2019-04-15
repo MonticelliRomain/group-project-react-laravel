@@ -33,7 +33,7 @@ export default class Create extends Component {
       name: "",
       description: "",
       image_url: "",
-      // video_url:"",
+      video_url:"",
       date_event: today,
       reminder: null,
       thisDay: today,
@@ -138,10 +138,27 @@ export default class Create extends Component {
             placeholder="paste an url"
             onChange={this.handleImgChange}
           />
+          <Form.Group controlId="exampleForm.ControlInput1">
+            <Form.Label>Add a video</Form.Label>
+            <Form.Control
+              name="video_url"
+              type="text"
+              placeholder="paste an url"
+              onChange={this.handleChange}
+            />
         </Form.Group>
         <div className="p-col-12 mt-3">
           <p>Date of event:</p>
-          <Calendar dateFormat="yy/mm/dd" value={this.state.date_event} onChange={(e) => this.setState({ date_event: e.value })} readOnlyInput={true} minDate={new Date()} showTime={true} timeOnly={false} hourFormat="24" showIcon={true} showSeconds={true} />
+          <Calendar
+            dateFormat="yy/mm/dd"
+            value={this.state.date_event}
+            onChange={(e) => this.setState({ date_event: e.value })}
+            readOnlyInput={true} minDate={new Date()} showTime={true}
+            timeOnly={false}
+            hourFormat="24"
+            showIcon={true}
+            showSeconds={true}
+          />
         </div>
         <div className="p-col-12 mt-3">
           <div className="form-check">
@@ -155,7 +172,19 @@ export default class Create extends Component {
             </label>
           </div>
           <div style={{ display: 'none' }} name="calendarDisplay">
-            <Calendar dateFormat="yy/mm/dd" value={this.state.reminder} onChange={(e) => this.setState({ reminder: e.value })} readOnlyInput={true} showTime={true} timeOnly={false} minDate={this.state.thisDay} maxDate={this.state.date_event} hourFormat="24" showIcon={true} showSeconds={true} />
+            <Calendar
+              dateFormat="yy/mm/dd"
+              value={this.state.reminder}
+              onChange={(e) => this.setState({ reminder: e.value })}
+              readOnlyInput={true}
+              showTime={true}
+              timeOnly={false}
+              minDate={this.state.thisDay}
+              maxDate={this.state.date_event}
+              hourFormat="24"
+              showIcon={true}
+              showSeconds={true}
+            />
           </div>
         </div>
 
