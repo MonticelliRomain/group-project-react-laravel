@@ -29,7 +29,7 @@ class ListOfParticipantController extends Controller
     public function store(Request $request, $id)
     {
        
-        $sub = DB::insert('insert into list_of_participants (participant, event) values (?, ?)',
+        $sub = DB::insert('insert into list_of_participants (participant, event, reminded) values (?, ?, false)',
                 [auth('api')->user()->id, $id]);
         return response()->json([
             'message' => 'Inscription successful'
