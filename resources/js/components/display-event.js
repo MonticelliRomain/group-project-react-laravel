@@ -76,13 +76,13 @@ export default class DisplayEvent extends Component {
 
           <div>
             {this.state.eventList.map(item =>
-              <div key={item.id} className="w-100  ">
+              <div key={this.state.idEvent} className="w-100  ">
 
 
                   <h1 className="text-center border-bottom">{item.name}</h1>
                   <h4 className="boxDate text-center shadow">{item.date_event}</h4>
                   <div className="imgDivSingle mt-5">
-                <img className="imgDisplaySingle ml-auto mr-auto" src={item.image_url} alt="image event"/>
+                <img className="imgDisplaySingle ml-auto mr-auto" src={base64.decode(item.image_url)} alt="image event"/>
                 </div>
                   <div className="mt-5 text-center boxDescriptionSingle shadow">
                     {item.description}
@@ -94,6 +94,13 @@ export default class DisplayEvent extends Component {
 
                 </div>
                 <div>{ editButton }</div>
+              </div>
+            )}
+            {this.state.suscribersList.map(participant=>
+              <div key={participant.id}>
+                <div className="mt-5 text-center boxDescriptionSingle shadow">
+                  {participant.username}
+                </div>
               </div>
             )}
           </div>

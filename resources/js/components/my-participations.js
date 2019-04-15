@@ -54,7 +54,7 @@ export default class MyParticipation extends Component {
                   {item.description}
                 </div>
                 <p>
-                  <Link variant="light" className="btn btn-light my-2 shadow" to={"/display-event/" + item.id} >More informations</Link>
+                  <Link variant="light" className="btn btn-light my-2 shadow" to={"/display-event-" + item.id} >More informations</Link>
                 </p>
               </Box>
             </div>
