@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import Form from 'react-bootstrap/Form'
 import { Calendar } from 'primereact/calendar';
+import {RadioButton} from 'primereact/radiobutton';
 import Button from 'react-bootstrap/Button';
 import base64 from 'react-native-base64'
 import { appAddEvent } from './util/helpers';
@@ -40,7 +41,8 @@ export default class Create extends Component {
       minDate: minDate,
       maxDate: maxDate,
       invalidDates: [today],
-      boxReminder: false
+      boxReminder: false,
+      media_pick:"image"
     };
   }//\end constructor
 
@@ -107,37 +109,53 @@ export default class Create extends Component {
   }
 
   render() {
-    // console.log(this.state);
+    console.log(this.state.media_pick);
 
     return (
-      <Form onSubmit={this.handleSubmit} className="m-5">
-        <h1>Create new Event</h1>
-        <Form.Group controlId="exampleForm.ControlInput1">
-          <Form.Label>Title</Form.Label>
-          <Form.Control
-            name="name"
-            type="text"
-            placeholder="your event title"
-            onChange={this.handleChange}
+      <>
+        <Form onSubmit={this.handleSubmit} className="m-5">
+          <h1>Create new Event</h1>
+          <Form.Group controlId="exampleForm.ControlInput1">
+            <Form.Label>Title</Form.Label>
+            <Form.Control
+              name="name"
+              type="text"
+              placeholder="your event title"
+              onChange={this.handleChange}
+            />
+          </Form.Group>
+          <Form.Group controlId="exampleForm.ControlTextarea1">
+            <Form.Label>Description</Form.Label>
+            <Form.Control
+              name="description"
+              placeholder="your event description"
+              as="textarea" rows="10"
+              onChange={this.handleChange}
+            />
+          </Form.Group>
+          <RadioButton
+            value="image"
+            name="city"
+            onChange={(e) => this.setState({media_pick: e.value})}
+            checked={this.state.media_pick === 'image'}
           />
-        </Form.Group>
-        <Form.Group controlId="exampleForm.ControlTextarea1">
-          <Form.Label>Description</Form.Label>
-          <Form.Control
-            name="description"
-            placeholder="your event description"
-            as="textarea" rows="10"
-            onChange={this.handleChange}
+          <RadioButton
+            value="video"
+            name="city"
+            onChange={(e) => this.setState({media_pick: e.value})}
+            checked={this.state.media_pick === 'video'}
           />
-        </Form.Group>
-        <Form.Group controlId="exampleForm.ControlInput1">
-          <Form.Label>Add an image</Form.Label>
-          <Form.Control
-            name="image_url"
-            type="file"
-            placeholder="paste an url"
-            onChange={this.handleImgChange}
-          />
+          {this.state.media_pick === "image" ?
+          <Form.Group controlId="exampleForm.ControlInput1">
+            <Form.Label>Add an image</Form.Label>
+            <Form.Control
+              name="image_url"
+              type="file"
+              placeholder="paste an url"
+              onChange={this.handleImgChange}
+            />
+          </Form.Group>
+          :
           <Form.Group controlId="exampleForm.ControlInput1">
             <Form.Label>Add a video</Form.Label>
             <Form.Control
@@ -146,50 +164,51 @@ export default class Create extends Component {
               placeholder="paste an url"
               onChange={this.handleChange}
             />
-        </Form.Group>
-        <div className="p-col-12 mt-3">
-          <p>Date of event:</p>
-          <Calendar
-            dateFormat="yy/mm/dd"
-            value={this.state.date_event}
-            onChange={(e) => this.setState({ date_event: e.value })}
-            readOnlyInput={true} minDate={new Date()} showTime={true}
-            timeOnly={false}
-            hourFormat="24"
-            showIcon={true}
-            showSeconds={true}
-          />
-        </div>
-        <div className="p-col-12 mt-3">
-          <div className="form-check">
-            <input className="form-check-input"
-              type="checkbox"
-              name="boxReminder"
-              checked={this.state.boxReminder}
-              onChange={this.handleChange} />
-            <label className="form-check-label">
-              Send a reminder to users who suscribed
-            </label>
-          </div>
-          <div style={{ display: 'none' }} name="calendarDisplay">
+          </Form.Group>
+          }
+          <div className="p-col-12 mt-3">
+            <p>Date of event:</p>
             <Calendar
               dateFormat="yy/mm/dd"
-              value={this.state.reminder}
-              onChange={(e) => this.setState({ reminder: e.value })}
-              readOnlyInput={true}
-              showTime={true}
+              value={this.state.date_event}
+              onChange={(e) => this.setState({ date_event: e.value })}
+              readOnlyInput={true} minDate={new Date()} showTime={true}
               timeOnly={false}
-              minDate={this.state.thisDay}
-              maxDate={this.state.date_event}
               hourFormat="24"
               showIcon={true}
               showSeconds={true}
             />
           </div>
-        </div>
-
-        <Button disabled={!this.validateForm()} className="my-3" type="submit">Submit</Button>
-      </Form>
+          <div className="p-col-12 mt-3">
+            <div className="form-check">
+              <input className="form-check-input"
+                type="checkbox"
+                name="boxReminder"
+                checked={this.state.boxReminder}
+                onChange={this.handleChange} />
+              <label className="form-check-label">
+                Send a reminder to users who suscribed
+              </label>
+            </div>
+            <div style={{ display: 'none' }} name="calendarDisplay">
+              <Calendar
+                dateFormat="yy/mm/dd"
+                value={this.state.reminder}
+                onChange={(e) => this.setState({ reminder: e.value })}
+                readOnlyInput={true}
+                showTime={true}
+                timeOnly={false}
+                minDate={this.state.thisDay}
+                maxDate={this.state.date_event}
+                hourFormat="24"
+                showIcon={true}
+                showSeconds={true}
+              />
+            </div>
+          </div>
+          <Button disabled={!this.validateForm()} className="my-3" type="submit">Submit</Button>
+        </Form>
+      </>
     )
   }
 }
