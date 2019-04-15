@@ -28,6 +28,7 @@ class ListOfParticipantController extends Controller
      */
     public function store(Request $request, $id)
     {
+       
         $sub = DB::insert('insert into list_of_participants (participant, event) values (?, ?)',
                 [auth('api')->user()->id, $id]);
         return response()->json([
@@ -54,6 +55,7 @@ class ListOfParticipantController extends Controller
     }
 
     public function myParticipation(Request $request){
+        
         $events = DB::table('list_of_participants')
             ->join('users','list_of_participants.participant', '=', 'users.id')
             ->join('events','list_of_participants.event', '=', 'events.id')

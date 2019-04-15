@@ -14,7 +14,6 @@ class Event extends Model
         'description',
         'reminder',
         'image_url'
-        
 
     ];
 

@@ -30,6 +30,7 @@ class Kernel extends ConsoleKernel
      */
     protected function schedule(Schedule $schedule)
     {
+
         \Log::info('In Kernel schedule function');
         $reminder = DB::table('events')
                         ->join('list_of_participants', 'list_of_participants.event', 'events.id')
@@ -48,8 +49,7 @@ class Kernel extends ConsoleKernel
         foreach ($reminder as $reminders) {
             //\Log::info($reminders['eventName']);
             Mail::to($reminders->email)->send(new Reminder($reminders));
-            
-        }
+
     }
 
     /**
