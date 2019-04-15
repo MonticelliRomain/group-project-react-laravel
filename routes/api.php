@@ -48,3 +48,6 @@ Route::middleware('auth:api')->get('/myParticipation', 'ListOfParticipantControl
 Route::middleware('auth:api')->post('/inscription/{id}', 'ListOfParticipantController@store')->name('event.inscription');
 //post remove inscription
 Route::middleware('auth:api')->post('/unsubscribe/{id}', 'ListOfParticipantController@destroy')->name('event.unsub');
+
+//post list all users
+Route::middleware('auth:api')->get('/listOfUsers', 'AuthController@list')->name('user.list');
