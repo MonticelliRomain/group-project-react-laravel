@@ -49,7 +49,7 @@ class Kernel extends ConsoleKernel
         foreach ($reminder as $reminders) {
             //\Log::info($reminders['eventName']);
             Mail::to($reminders->email)->send(new Reminder($reminders));
-
+        }
     }
 
     /**
