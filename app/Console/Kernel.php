@@ -47,7 +47,7 @@ class Kernel extends ConsoleKernel
                         ->update(['reminded' => 'true']);
        
         foreach ($reminder as $reminders) {
-            //\Log::info($reminders['eventName']);
+            \Log::info($reminders->email;
             Mail::to($reminders->email)->send(new Reminder($reminders));
         }
     }
