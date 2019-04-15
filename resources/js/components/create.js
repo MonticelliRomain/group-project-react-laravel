@@ -3,6 +3,7 @@ import Form from 'react-bootstrap/Form'
 import { Calendar } from 'primereact/calendar';
 import {RadioButton} from 'primereact/radiobutton';
 import Button from 'react-bootstrap/Button';
+import Container from 'react-bootstrap/Container';
 import base64 from 'react-native-base64'
 import { appAddEvent } from './util/helpers';
 import { convertDate } from './util/helpers';
@@ -58,7 +59,7 @@ export default class Create extends Component {
     const value = target.value;
     const name = target.name;
     this.setState({ image_url: value });
-  }
+  }//\end fct handleImgChange
 
   handleChange(event) {
     //this.setState({ [event.target.name]: event.target.value });
@@ -109,7 +110,7 @@ export default class Create extends Component {
   }
 
   render() {
-    console.log(this.state.media_pick);
+    // console.log(this.state.media_pick);
 
     return (
       <>
@@ -133,18 +134,22 @@ export default class Create extends Component {
               onChange={this.handleChange}
             />
           </Form.Group>
-          <RadioButton
-            value="image"
-            name="city"
-            onChange={(e) => this.setState({media_pick: e.value})}
-            checked={this.state.media_pick === 'image'}
-          />
-          <RadioButton
-            value="video"
-            name="city"
-            onChange={(e) => this.setState({media_pick: e.value})}
-            checked={this.state.media_pick === 'video'}
-          />
+          <Container>
+            <h5>Upload an image</h5>
+            <RadioButton
+              value="image"
+              name="image"
+              onChange={(e) => this.setState({media_pick: e.value})}
+              checked={this.state.media_pick === 'image'}
+            />
+              <h5>Upload a video</h5>
+            <RadioButton
+              value="video"
+              name="vidéo"
+              onChange={(e) => this.setState({media_pick: e.value})}
+              checked={this.state.media_pick === 'video'}
+            />
+          </Container>
           {this.state.media_pick === "image" ?
           <Form.Group controlId="exampleForm.ControlInput1">
             <Form.Label>Add an image</Form.Label>
