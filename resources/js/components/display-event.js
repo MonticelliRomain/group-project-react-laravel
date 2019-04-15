@@ -93,7 +93,7 @@ export default class DisplayEvent extends Component {
                     {item.description}
                   </div>
                   <div>
-                    <OpenStreetMap >
+                    <OpenStreetMap />
                   </div>
                 <p className="boxDate shadow text-center my-3">Added By: {item.author}</p>
                 <div className="p-col-12 mt-3">
