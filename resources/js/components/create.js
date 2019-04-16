@@ -89,10 +89,17 @@ export default class Create extends Component {
 
   /* date conversion + submit*/
   handleSubmit() {
-    let image_url = "data:image/jpeg;base64,"+this.state.image_url;
-    // if (image_url === "") {
-    //   image_url = "https://zupimages.net/up/19/15/xpo1.png";
-    // }
+    let image_url = "";
+    if(this.state.media_pick === "image"){
+      if (this.state.image_url === "") {
+        image_url = "https://zupimages.net/up/19/15/xpo1.png";
+      } else {
+        image_url = "data:image/jpeg;base64,"+this.state.image_url
+      }
+    } else {
+      image_url = this.state.video_url
+    }
+
     let convertedDate = convertDate(this.state.date_event);
     let convertedReminder = "";
     let datetest = new Date();
@@ -108,7 +115,8 @@ export default class Create extends Component {
       "date_event": convertedDate,
       "description": this.state.description,
       "reminder": convertedReminder,
-      "image_url": image_url }
+      "image_url": image_url/*,
+      "media_pick": this.state.media_pick*/}
     //console.log(myJSON);
     event.preventDefault()
     console.log(myJSON);
@@ -128,7 +136,6 @@ export default class Create extends Component {
   }
 
   render() {
-  console.log("img "+ this.state.image_url);
     return (
       <>
         <Form onSubmit={this.handleSubmit} className="m-5">
