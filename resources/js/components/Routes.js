@@ -1,5 +1,8 @@
 import React from 'react'
-import { BrowserRouter as Router, Route, Link, Switch } from 'react-router-dom';
+import { Route, Switch } from 'react-router-dom';
+import posed, { PoseGroup } from 'react-pose';
+
+// import components
 import CreateAccount from './create-account';
 import Create from './create';
 import DisplayAll from './display-all';
@@ -13,7 +16,6 @@ import Logout from './logout';
 import SubscriptionEvent from './subscription-event';
 import UnsubscriptionEvent from './unsuscription-event';
 import Home from './Home'
-import posed, { PoseGroup } from 'react-pose';
 
 const RouteContainer = posed.div({
   enter: { x:0, opacity: 1, delay: 100, beforeChildren: true },
@@ -22,18 +24,18 @@ const RouteContainer = posed.div({
 
 
 const Routes = () => (
-
-   <Route render={ ({ location }) => (
-        <PoseGroup>
+<>
+  <Route render={ ({ location }) => (
+  <PoseGroup>
     <RouteContainer key={location.pathname}>
-      <Switch location={location}>
+      <Switch>
         <Route exact path='/' component={Home} />
         <Route exact path='/create-account' component={CreateAccount} />
         <Route exact path='/create-event' component={Create} />
         <Route exact path='/display-all' component={DisplayAll} />
-        <Route exact path='/display-event/:id' component={DisplayEvent} />
+        <Route exact path='/display-event-:id' component={DisplayEvent} />
         <Route exact path='/display-past' component={DisplayPast} />
-        <Route exact path='/edit/:id' component={Edit} />
+        <Route exact path='/edit-:id' component={Edit} />
         <Route exact path='/login' component={Login} />
         <Route exact path='/logout' component={Logout} />
         <Route exact path='/my-events' component={MyEvents} />
@@ -43,8 +45,9 @@ const Routes = () => (
       </Switch>
     </RouteContainer>
   </PoseGroup>
-
-)}/>
+  )}/>
+</>
 )
 
-export default Routes
+
+export default Routes;

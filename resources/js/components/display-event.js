@@ -4,6 +4,10 @@ import { suscribeEvent } from './util/helpers';
 import { unsuscribeEvent } from './util/helpers';
 import { BrowserRouter as Router, Route, Link, Switch } from 'react-router-dom';
 
+// import copmponents
+import OpenStreetMap from './OpenStreetMap';
+import MediaPlayer from './util/MediaPlayer';
+
 export default class DisplayEvent extends Component {
 
   constructor(props) {
@@ -47,6 +51,7 @@ export default class DisplayEvent extends Component {
   }//\end fct handleChange
 
   render() {
+
     const { eventList } = this.state;
     const authorArticle = this.state.eventList.map(item => item.author);
     const authorId = this.state.eventList.map(item => item.id);
@@ -56,7 +61,7 @@ export default class DisplayEvent extends Component {
     let suscribeButton;
       if (sessionStorage.getItem("user-name-storage") === JSON.stringify(authorArticle[0])) {
         editButton = (
-          <Link variant="light" className="btn btn-light my-2" to={"/edit/"+idRoute} >Edit this event</Link>
+          <Link variant="light" className="btn btn-light my-2" to={"/edit-"+idRoute} >Edit this event</Link>
         )
       }
       if (sessionStorage.getItem("token-storage") !== null) {
@@ -76,16 +81,19 @@ export default class DisplayEvent extends Component {
 
           <div>
             {this.state.eventList.map(item =>
-              <div key={item.id} className="w-100  ">
+              <div key={this.state.idEvent} className="w-100  ">
 
 
                   <h1 className="text-center border-bottom">{item.name}</h1>
                   <h4 className="boxDate text-center shadow">{item.date_event}</h4>
                   <div className="imgDivSingle mt-5">
-                <img className="imgDisplaySingle ml-auto mr-auto" src={item.image_url} alt="image event"/>
+                  <MediaPlayer package={item} className="imgDisplaySingle ml-auto mr-auto" />
                 </div>
                   <div className="mt-5 text-center boxDescriptionSingle shadow">
                     {item.description}
+                  </div>
+                  <div>
+                    <OpenStreetMap />
                   </div>
                 <p className="boxDate shadow text-center my-3">Added By: {item.author}</p>
                 <div className="p-col-12 mt-3">
@@ -94,6 +102,13 @@ export default class DisplayEvent extends Component {
 
                 </div>
                 <div>{ editButton }</div>
+              </div>
+            )}
+            {this.state.suscribersList.map(participant=>
+              <div key={participant.id}>
+                <div className="mt-5 text-center boxDescriptionSingle shadow">
+                  {participant.username}
+                </div>
               </div>
             )}
           </div>

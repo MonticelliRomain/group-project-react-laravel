@@ -2,6 +2,9 @@ import React, { Component } from 'react'
 import { appGetPastEvent } from './util/helpers';
 import posed from 'react-pose';
 
+//import Components
+import MediaPlayer from './util/MediaPlayer';
+
 const Box = posed.div({
   hoverable: true,
   pressable: true,
@@ -42,7 +45,7 @@ export default class DisplayPast extends Component {
               <Box className="border eventBox w-100 bg-secondary text-light my-3 p-3 eventBox">
                 <p className="border boxDate">{item.date_event}</p>
                 <div className="imgDiv border">
-              <img className="imgDisplay" src={item.image_url} alt="image event"/>
+              <MediaPlayer package={item}  className="imgDisplay"/>
               </div>
                 <h1 className="eventTitle ">{item.name}</h1>
                 <div className="border boxDescription">
