@@ -5,6 +5,9 @@ import { Link } from 'react-router-dom';
 import { rgba } from 'style-value-types';
 // import base64 from 'react-native-base64';
 
+//import Components
+import MediaPlayer from './util/MediaPlayer';
+
 const Box = posed.div({
   hoverable: true,
   pressable: true,
@@ -71,7 +74,7 @@ export default class DisplayAll extends Component {
               <p className="border boxDate shadow">{item.date_event}</p>
                 <h1 className="eventTitle ">{item.name}</h1>
                 <Img className="imgDiv border">
-                    <img className="imgDisplay" src={item.image_url} alt="image event"/>
+                    <MediaPlayer package={item.image_url}/>
                 </Img>
                 <div className="border boxDescription">
                   {item.description}
