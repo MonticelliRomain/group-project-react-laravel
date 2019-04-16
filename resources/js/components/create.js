@@ -115,11 +115,11 @@ export default class Create extends Component {
       "date_event": convertedDate,
       "description": this.state.description,
       "reminder": convertedReminder,
-      "image_url": image_url/*,
-      "media_pick": this.state.media_pick*/}
-    //console.log(myJSON);
+      "image_url": image_url,
+      "media_type": this.state.media_pick
+    }
     event.preventDefault()
-    console.log(myJSON);
+    // console.log(myJSON);
     appAddEvent(myJSON);
   }//\end fct handleSubmit
 

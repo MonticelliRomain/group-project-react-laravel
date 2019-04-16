@@ -6,6 +6,7 @@ import { BrowserRouter as Router, Route, Link, Switch } from 'react-router-dom';
 
 // import copmponents
 import OpenStreetMap from './OpenStreetMap';
+import MediaPlayer from './util/MediaPlayer';
 
 export default class DisplayEvent extends Component {
 
@@ -86,7 +87,7 @@ export default class DisplayEvent extends Component {
                   <h1 className="text-center border-bottom">{item.name}</h1>
                   <h4 className="boxDate text-center shadow">{item.date_event}</h4>
                   <div className="imgDivSingle mt-5">
-                <img className="imgDisplaySingle ml-auto mr-auto" src={item.image_url} alt="image event"/>
+                  <MediaPlayer package={item} className="imgDisplaySingle ml-auto mr-auto" />
                 </div>
                   <div className="mt-5 text-center boxDescriptionSingle shadow">
                     {item.description}

@@ -8,8 +8,9 @@ export default class MediaPlayer extends Component {
     }
   }
   render(){
+    console.log(this.props.package);
     return(
-      <img className="imgDisplay" src={this.props.package} alt="image event"/>
+      <img className={this.props.className} src={this.props.package.image_url} alt="image event"/>
     );
   }
 }

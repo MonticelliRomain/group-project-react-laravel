@@ -62,7 +62,7 @@ export default class DisplayAll extends Component {
 
   /*rendering content*/
   render() {
-    console.log(this.state);
+    // console.log(this.state);
     const { eventList } = this.state;
     return (
       <div>
@@ -74,7 +74,7 @@ export default class DisplayAll extends Component {
               <p className="border boxDate shadow">{item.date_event}</p>
                 <h1 className="eventTitle ">{item.name}</h1>
                 <Img className="imgDiv border">
-                    <MediaPlayer package={item.image_url}/>
+                    <MediaPlayer package={item} className="imgDisplay"/>
                 </Img>
                 <div className="border boxDescription">
                   {item.description}
