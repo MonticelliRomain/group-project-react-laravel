@@ -25,6 +25,6 @@ class Reminder extends Mailable
      */
     public function build()
     {
-        return $this->view('emails.reminder');
+        return $this->from('event@dab.be')->view('emails.reminder');
     }
 }
