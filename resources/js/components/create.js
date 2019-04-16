@@ -1,13 +1,12 @@
-import React, { Component } from 'react'
-import Form from 'react-bootstrap/Form'
-import { Calendar } from 'primereact/calendar';
-import {RadioButton} from 'primereact/radiobutton';
+import React, { Component } from 'react';
+import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
 import Container from 'react-bootstrap/Container';
-import base64 from 'react-native-base64'
+import { Calendar } from 'primereact/calendar';
+import { RadioButton } from 'primereact/radiobutton';
+// import base64 from 'react-native-base64'
 import { appAddEvent } from './util/helpers';
 import { convertDate } from './util/helpers';
-import { updateImageDisplay } from './util/helpers';
 
 
 export default class Create extends Component {
@@ -39,14 +38,14 @@ export default class Create extends Component {
       file:"",
       imagePreviewUrl:"",
       video_url:"",
+      media_pick:"image",
       date_event: today,
       reminder: null,
       thisDay: today,
       minDate: minDate,
       maxDate: maxDate,
       invalidDates: [today],
-      boxReminder: false,
-      media_pick:"image"
+      boxReminder: false
     };
   }//\end constructor
 
@@ -157,14 +156,14 @@ export default class Create extends Component {
             <RadioButton
               value="image"
               name="image"
-              onChange={(e) => this.setState({media_pick: e.value})}
+              onChange={(e) => this.setState({media_pick: e.value, video_url: ""})}
               checked={this.state.media_pick === 'image'}
             />
               <h5>Upload a video</h5>
             <RadioButton
               value="video"
-              name="vidéo"
-              onChange={(e) => this.setState({media_pick: e.value})}
+              name="video"
+              onChange={(e) => this.setState({media_pick: e.value, image_url: "", file:"", imagePreviewUrl:""})}
               checked={this.state.media_pick === 'video'}
             />
           </Container>
