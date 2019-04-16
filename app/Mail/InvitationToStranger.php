@@ -26,6 +26,6 @@ class InvitationToStranger extends Mailable
      */
     public function build()
     {
-        return $this->view('emails.invitationtostranger');
+        return $this->from('event@dab.be')->view('emails.invitationtostranger');
     }
 }
