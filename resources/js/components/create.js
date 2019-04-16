@@ -97,7 +97,7 @@ export default class Create extends Component {
         image_url = "data:image/jpeg;base64,"+this.state.image_url
       }
     } else {
-      image_url = this.state.video_url
+      image_url = "https://www.youtube.com/embed/"+this.state.video_url.substr(this.state.video_url.indexOf('=')+1)
     }
 
     let convertedDate = convertDate(this.state.date_event);

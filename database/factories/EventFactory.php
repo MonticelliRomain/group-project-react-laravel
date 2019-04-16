@@ -10,7 +10,6 @@ $factory->define(App\Event::class, function (Faker $faker) {
         'reminder' => $faker->dateTime(),
         'author' =>factory ('App\User')->create()->id,
         'media_type' => 'image',
-        'image_url' => 'https://zupimages.net/up/19/15/xpo1.png',
-        'reminded'=>false
+        'image_url' => 'https://zupimages.net/up/19/15/xpo1.png'
     ];
 });
