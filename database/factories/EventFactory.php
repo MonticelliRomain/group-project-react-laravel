@@ -8,7 +8,6 @@ $factory->define(App\Event::class, function (Faker $faker) {
         'date_event' => $faker->dateTime(),
         'description' => $faker->text(),
         'reminder' => $faker->dateTime(),
-        'author' =>factory ('App\User')->create()->id,
-        'reminded'=>false
+        'author' =>factory ('App\User')->create()->id
     ];
 });

@@ -42,6 +42,13 @@ class AuthController extends Controller
         return response()->json(['message' => 'Successfully logged out']);
     }
 
+    public function list (){
+
+        $users = User::all();
+        return response()->json($users);
+
+    }
+
     protected function respondWithToken($token)
     {
         return response()->json([

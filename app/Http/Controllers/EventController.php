@@ -6,6 +6,11 @@ use App\Event;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
+use App\User;
+use App\Mail\Invitation;
+use App\Mail\InvitationToStranger;
+use Illuminate\Support\Facades\Mail;
+
 class EventController extends Controller
 {
     /**
@@ -39,7 +44,7 @@ class EventController extends Controller
             $name=time().$file->getClientOriginalName();
             $file->move(public_path().'/images/', $name);
         }
-
+        
         $params = $request->all();
         $params['author'] = auth('api')->user()->id;
         $event = Event::create($params);
@@ -47,6 +52,28 @@ class EventController extends Controller
         return response()->json([
             'message' => 'Event created',
             'event' => $event
+        ]);
+    }
+
+    public function emailFriends(Request $request){
+
+        $emails = $request->email;
+        
+        foreach($emails as $email) {
+            $user =json_decode(User::where('email', '=', $email)->get());
+            
+            if($user !== []){
+                Mail::to($email)->send(new Invitation($user));
+               
+            }
+
+            else {
+                Mail::to($email)->send(new InvitationToStranger());
+               
+            }
+        }
+        return response()->json([
+            'message' => 'Le tilt'
         ]);
     }
 
