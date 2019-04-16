@@ -23,6 +23,6 @@ class Reminder extends Mailable
      */
     public function build()
     {
-        return $this->view('email.reminder');
+        return $this->view('emails.reminder');
     }
 }
