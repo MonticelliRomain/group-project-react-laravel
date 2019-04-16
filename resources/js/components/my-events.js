@@ -37,6 +37,7 @@ export default class MyEvents extends Component {
 
   /*rendering content*/
   render() {
+    console.log(this.state);
     const { eventList } = this.state;
     return (
       <div>

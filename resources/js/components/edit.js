@@ -3,8 +3,8 @@ import { updateEvent } from './util/helpers';
 import { appGetEventByIDEdit } from './util/helpers';
 import { convertDate } from './util/helpers';
 import Form from 'react-bootstrap/Form';
-import { Calendar } from 'primereact/calendar';
 import Button from 'react-bootstrap/Button';
+import { Calendar } from 'primereact/calendar';
 
 export default class DisplayEvent extends Component {
 
@@ -38,6 +38,10 @@ export default class DisplayEvent extends Component {
       name: "",
       description: "",
       image_url: "",
+      file:"",
+      imagePreviewUrl:"",
+      video_url:"",
+      media_pick:"image",
       date_event: "",
       reminder: "",
       thisDay: today,
