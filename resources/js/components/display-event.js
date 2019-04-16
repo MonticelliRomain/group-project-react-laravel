@@ -51,7 +51,6 @@ export default class DisplayEvent extends Component {
   }//\end fct handleChange
 
   render() {
-
     const { eventList } = this.state;
     const authorArticle = this.state.eventList.map(item => item.author);
     const authorId = this.state.eventList.map(item => item.id);
@@ -91,8 +90,6 @@ export default class DisplayEvent extends Component {
                 </div>
                   <div className="mt-5 text-center boxDescriptionSingle shadow">
                     {item.description}
-                  </div>
-                  <div>
                     <OpenStreetMap />
                   </div>
                 <p className="boxDate shadow text-center my-3">Added By: {item.author}</p>
