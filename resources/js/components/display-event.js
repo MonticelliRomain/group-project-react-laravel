@@ -89,7 +89,7 @@ export default class DisplayEvent extends Component {
                 </div>
                   <div className="mt-5 text-center boxDescriptionSingle shadow">
                     {item.description}
-                    <OpenStreetMap />
+                    <OpenStreetMap address="rue de la forêt 110, 4100 Seraing" className="map-placeholder" mapId={`event-${this.state.idEvent}-map`}/>
                   </div>
                 <p className="boxDate shadow text-center my-3">Added By: {item.author}</p>
                 <div className="p-col-12 mt-3">

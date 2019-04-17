@@ -1,41 +1,46 @@
 import React, { Component } from 'react';
 
-import L from 'leaflet';
-import { GeoSearchControl, OpenStreetMapProvider } from 'leaflet-geosearch';
-import { Map, Marker, Popup, TileLayer } from 'react-leaflet'
-
-const provider = new OpenStreetMapProvider();
-
-const searchControl = new GeoSearchControl({
-  provider: provider,
-});
-
 export default class OpenStreetMap extends Component {
-  constructor(props){
-    super(props);
+  componentDidMount(){
+    console.log('componentDidMount',this.props);
+    console.log(this.props.address, " ", encodeURIComponent(this.props.address));
+    const mapDiv = document.getElementById(`${this.props.mapId}`);
+    this.resize(mapDiv);
+    window.addEventListener('resize', () => this.resize(mapDiv));
   }
 
-  createLeafletElement() {
-    return GeoSearchControl({
-        provider: new OpenStreetMapProvider(),
-        style:'bar',
-        autoComplete: true,
-        autoClose:true,
-      });
+  async componentDidUpdate(prevProps){
+    if(this.props.address.match(/undefined/))
+      return;
+    document.getElementById(`${this.props.mapId}`).innerHTML = '';
+    const map = new OpenLayers.Map(this.props.mapId);
+    console.log(map);
+    map.addLayer(new OpenLayers.Layer.OSM());
+
+    const response = await fetch('https://nominatim.openstreetmap.org/search?format=json&q='+encodeURIComponent(this.props.address));
+    
+    
+    const json = await response.json();
+    const lonLat = new OpenLayers.LonLat(json[0].lon, json[0].lat)
+      .transform(
+        new OpenLayers.Projection("EPSG:4326"), // transform from WGS 1984
+        map.getProjectionObject() // to Spherical Mercator Projection
+      );
+    const zoom=16;
+    const markers = new OpenLayers.Layer.Markers("Markers");
+    map.addLayer(markers);
+    markers.addMarker(new OpenLayers.Marker(lonLat));
+    map.setCenter(lonLat, zoom);
+  }
+
+  resize(map){
+    if(map)
+    map.style.height = map.clientWidth*0.71 + 'px';
+  }
+
+  render() {
+      return (
+        <div className={`col-6 ${this.props.className}`} id={this.props.mapId}></div>
+      )
     }
-
-  render(){
-    const position = [51.505, -0.09]
-    return(
-      <Map center={position} zoom={13} id="mapid" ref="map"> 
-        <TileLayer
-          url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
-          attribution="&copy; <a href=&quot;http://osm.org/copyright&quot;>OpenStreetMap</a> contributors"
-        />
-        <Marker position={position}>
-          <Popup>A pretty CSS3 popup.<br />Easily customizable.</Popup>
-        </Marker>
-      </Map>
-    )
-  }
 }
