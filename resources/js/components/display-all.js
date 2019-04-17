@@ -1,8 +1,12 @@
 import React, { Component } from 'react';
 import { appGetFutureEvent } from './util/helpers';
 import posed from 'react-pose';
-import { BrowserRouter as Router, Route, Link, Switch } from 'react-router-dom'
+import { Link } from 'react-router-dom';
 import { rgba } from 'style-value-types';
+// import base64 from 'react-native-base64';
+
+//import Components
+import MediaPlayer from './util/MediaPlayer';
 
 const Box = posed.div({
   hoverable: true,
@@ -58,6 +62,7 @@ export default class DisplayAll extends Component {
 
   /*rendering content*/
   render() {
+    // console.log(this.state);
     const { eventList } = this.state;
     return (
       <div>
@@ -69,13 +74,13 @@ export default class DisplayAll extends Component {
               <p className="border boxDate shadow">{item.date_event}</p>
                 <h1 className="eventTitle ">{item.name}</h1>
                 <Img className="imgDiv border">
-                    {<img className="imgDisplay" src={item.image_url} alt="image event"/>}
+                    <MediaPlayer package={item} className="imgDisplay"/>
                 </Img>
                 <div className="border boxDescription">
                   {item.description}
                 </div>
                 <p>
-                  <Link variant="light" className="btn btn-light my-2 shadow" to={"/display-event/" + item.id} >More informations</Link>
+                  <Link variant="light" className="btn btn-light my-2 shadow" to={"/display-event-" + item.id} >More informations</Link>
                 </p>
               </Box>
             </div>
