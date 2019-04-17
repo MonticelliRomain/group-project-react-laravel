@@ -109,8 +109,8 @@ class EventController extends Controller
      */
     public function update(Request $request, $id)
     {
-        DB::update('update events set name = ?, date_event = ?, description = ?, reminder = ?, image_url = ? where id = ?',
-        [$request->name, $request->date_event, $request->description, $request->reminder, $request->image_url, $id]);
+        DB::update('update events set name = ?, date_event = ?, description = ?, reminder = ?, image_url = ? , address = ?, media_type = ? where id = ?',
+        [$request->name, $request->date_event, $request->description, $request->reminder, $request->image_url,$request->address, $request->media_type, $id ]);
         return response()->json([
             'message' => 'Event updated'
         ]);

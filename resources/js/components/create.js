@@ -4,7 +4,6 @@ import Button from 'react-bootstrap/Button';
 import Container from 'react-bootstrap/Container';
 import { Calendar } from 'primereact/calendar';
 import { RadioButton } from 'primereact/radiobutton';
-// import base64 from 'react-native-base64'
 import { appAddEvent } from './util/helpers';
 import { convertDate } from './util/helpers';
 

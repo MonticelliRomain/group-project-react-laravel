@@ -4,7 +4,9 @@ import { appGetEventByIDEdit } from './util/helpers';
 import { convertDate } from './util/helpers';
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
+import Container from 'react-bootstrap/Container';
 import { Calendar } from 'primereact/calendar';
+import { RadioButton } from 'primereact/radiobutton';
 
 export default class DisplayEvent extends Component {
 
@@ -32,11 +34,10 @@ export default class DisplayEvent extends Component {
     this.state = {
 
       eventList: [],
-      suscribersList: [],
-      boxSubscribe : false,
       idEvent: this.props.match.params.id,
       name: "",
       description: "",
+      address: "",
       image_url: "",
       file:"",
       imagePreviewUrl:"",
@@ -57,12 +58,35 @@ export default class DisplayEvent extends Component {
     appGetEventByIDEdit(this.props.match.params.id, this);
   }
 
+  componentDidUpdate(){
+    console.log("update ",this.state);
+  }
+
   /* form validation*/
     validateForm() {
       return this.state.name.length > 0 && this.state.description.length > 0;
     }//\end fct validateForm
 
   /*onchanges*/
+    handleImgChange(event){
+      event.preventDefault();
+      let reader = new FileReader();
+      let file = event.target.files[0];
+      let output = document.getElementById('output');
+
+      reader.onloadend = () => {
+        this.setState({
+            file: file,
+            imagePreviewUrl: reader.result,
+        });
+        output.src = reader.result
+        this.setState({
+          image_url : reader.result.substr(reader.result.indexOf(',')+1)
+        });
+      }
+      reader.readAsDataURL(file);
+    }//\end fct handleImgChange
+
     handleChange(event) {
         const target = event.target;
         const value = target.type === 'checkbox' ? target.checked : target.value;
@@ -91,8 +115,17 @@ export default class DisplayEvent extends Component {
       else{
         convertedReminder = "";
       }
-      let myJSON = { "name": this.state.name, "date_event": convertedDate , "description": this.state.description, "reminder": convertedReminder, "image_url": urlToSend}
+      let myJSON = {
+        "name": this.state.name,
+        "description": this.state.description,
+        "address":this.state.address,
+        "date_event": convertedDate,
+        "reminder": convertedReminder,
+        "image_url": urlToSend,
+        "media_type": this.state.media_pick
+      }
       event.preventDefault()
+      // console.log(this.state.idEvent,myJSON);
       updateEvent(this.state.idEvent,myJSON);
     }//\end fct handleSubmit
 
@@ -109,7 +142,7 @@ export default class DisplayEvent extends Component {
     }
 
   render() {
-    const { eventList } = this.state;
+    // const { eventList } = this.state;
     const authorArticle = this.state.eventList.map(item => item.author);
 
     return (
@@ -117,84 +150,115 @@ export default class DisplayEvent extends Component {
       <h1>Update event</h1>
       <div className="m-2 m-sm-5 p-2 p-xl-5">
           <div>
-            {this.state.eventList.map(item =>
-              <div key={item.id} className="w-100  ">
-              <Form.Group controlId="exampleForm.ControlInput1">
-              <Form.Label>Title</Form.Label>
-                  <Form.Control
-                    name="name"
-                    type="text"
-                    value={this.state.name}
-                    placeholder="your event title"
-                    onChange={this.handleChange}
-                  />
+              <div key={this.state.id} className="w-100  ">
+                <Form.Group controlId="exampleForm.ControlInput1">
+                  <Form.Label>Title</Form.Label>
+                    <Form.Control
+                      name="name"
+                      type="text"
+                      value={this.state.name}
+                      placeholder="your event title"
+                      onChange={this.handleChange}
+                    />
                 </Form.Group>
                 <Form.Group controlId="exampleForm.ControlTextarea1">
                   <Form.Label>Description</Form.Label>
-                  <Form.Control
+                    <Form.Control
                     name="description"
                     placeholder="your event description"
                     as="textarea" rows="10"
                     value={this.state.description}
                     onChange={this.handleChange}
                   />
-                  </Form.Group>
-                  <Form.Group controlId="exampleForm.ControlInput1">
+                </Form.Group>
+                <Form.Group controlId="exampleForm.ControlTextarea1">
+                  <Form.Label>Address</Form.Label>
+                  <Form.Control
+                    name="address"
+                    placeholder="your event address"
+                    value={this.state.address}
+                    onChange={this.handleChange}
+                  />
+                </Form.Group>
+                <Container>
+                  <h5>Upload an image</h5>
+                  <RadioButton
+                    value="image"
+                    name="image"
+                    onChange={(e) => this.setState({media_pick: e.value, video_url: ""})}
+                    checked={this.state.media_pick === 'image'}
+                  />
+                    <h5>Upload a video</h5>
+                  <RadioButton
+                    value="video"
+                    name="video"
+                    onChange={(e) => this.setState({media_pick: e.value, image_url: "", file:"", imagePreviewUrl:""})}
+                    checked={this.state.media_pick === 'video'}
+                  />
+                </Container>
+                {this.state.media_pick === "image" ?
+                <Form.Group controlId="exampleForm.ControlInput1">
                   <Form.Label>Add an image</Form.Label>
-                      <Form.Control
-                      name="image_url"
-                      type="url"
-                      value={this.state.image_url}
-                      pattern="(http(s?):)([/|.|\w|\s|-])*\.(?:jpg|gif|png)"
-                      placeholder="paste an url"
-                      onChange={this.handleChange}
+                  <Form.Control
+                    name="image_url"
+                    type="file"
+                    onChange={(e)=>this.handleImgChange(e)}
+                  />
+                  <div id="preview"><img id="output" src={this.state.imagePreviewUrl} alt=""/></div>
+                </Form.Group>
+                :
+                <Form.Group controlId="exampleForm.ControlInput1">
+                  <Form.Label>Add a video</Form.Label>
+                  <Form.Control
+                    name="video_url"
+                    type="text"
+                    placeholder="paste an url"
+                    onChange={this.handleChange}
+                  />
+                </Form.Group>
+                }
+                <div className="p-col-12 mt-3">
+                  <p>Date of event:</p>
+                  <Calendar
+                      dateFormat="yy/mm/dd"
+                      value={this.state.date_event}
+                      onChange={(e) => this.setState({ date_event: e.value })}
+                      readOnlyInput={true}
+                      minDate={new Date()}
+                      showTime={true}
+                      timeOnly={false}
+                      hourFormat="24"
+                      showIcon={true}
+                      showSeconds={true}
                       />
-                    </Form.Group>
-                    <div className="p-col-12 mt-3">
-                        <p>Date of event:</p>
-                        <Calendar
-                        dateFormat="yy/mm/dd"
-                        value={this.state.date_event}
-                        onChange={(e) => this.setState({ date_event: e.value })}
-                        readOnlyInput={true}
-                        minDate={new Date()}
-                        showTime={true}
-                        timeOnly={false}
-                        hourFormat="24"
-                        showIcon={true}
-                        showSeconds={true}
-                        />
-                    </div>
-                    <div className="p-col-12 mt-3">
-                      <div className="form-check">
-                        <input className="form-check-input"
-                        type="checkbox"
-                        name="boxReminder"
-                        checked={this.state.boxReminder}
-                        onChange={this.handleChange} />
-                        <label className="form-check-label">
-                          Send a reminder to users who suscribed
-                        </label>
-                      </div>
-                      <div style={{display:'none'}} name="calendarDisplay">
-                        <Calendar
-                        dateFormat="yy/mm/dd"
-                        value={this.state.reminder}
-                        onChange={(e) => this.setState({ reminder: e.value })}
-                        readOnlyInput={true}
-                        showTime={true}
-                        timeOnly={false}
-                        hourFormat="24"
-                        showIcon={true}
-                        showSeconds={true}
-                        />
-                      </div>
-                    </div>
-
+                </div>
+                <div className="p-col-12 mt-3">
+                  <div className="form-check">
+                    <input className="form-check-input"
+                    type="checkbox"
+                    name="boxReminder"
+                    checked={this.state.boxReminder}
+                    onChange={this.handleChange} />
+                    <label className="form-check-label">
+                      Send a reminder to users who suscribed
+                    </label>
+                  </div>
+                  <div style={{display:'none'}} name="calendarDisplay">
+                    <Calendar
+                    dateFormat="yy/mm/dd"
+                    value={this.state.reminder}
+                    onChange={(e) => this.setState({ reminder: e.value })}
+                    readOnlyInput={true}
+                    showTime={true}
+                    timeOnly={false}
+                    hourFormat="24"
+                    showIcon={true}
+                    showSeconds={true}
+                    />
+                  </div>
+                </div>
               </div>
-            )}
           </div>
-
         <Button disabled={!this.validateForm()} className="my-3" type="submit">Submit</Button>
         </div>
         </Form>

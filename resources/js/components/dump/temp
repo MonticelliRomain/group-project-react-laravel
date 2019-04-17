@@ -20,3 +20,9 @@ from add event in postman
 		onChange={this.handleImgChange}
 	/>
 </Form.Group>
+
+Venez manger les bons spaghettis bolo de Béatrice.
+
+On va boire aussi (Joey amènera de la cara).
+
+Possibilité de dormir sur place dans le panier du chien.
