@@ -9,15 +9,16 @@ class InvitationToStranger extends Mailable
 {
     use Queueable, SerializesModels;
 
+    public $eventURL;
     
     /**
      * Create a new message instance.
      *
      * @return void
      */
-    public function __construct()
+    public function __construct($id)
     {
-        
+        $this->eventURL = 'https://jpbrite.herokuapp.com/display-event-' . $id;
     }
     /**
      * Build the message.
