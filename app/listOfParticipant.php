@@ -8,7 +8,8 @@ class listOfParticipant extends Model
 {
     protected $fillable = [
         'participant',
-        'event'
+        'event',
+        'reminded'
     ];
 
     public function participants(){

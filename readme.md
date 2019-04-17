@@ -4,7 +4,7 @@ CRUD Application to manage events online.   If you want to know how does it look
 check it out [here](https://event-dab.herokuapp.com/)
 ## Built With
 
-* [Laravel](https://laravel.com/docs/5.8) - PHP Framework 
+* [Laravel](https://laravel.com/docs/5.8) - PHP Framework
 * [React](https://reactjs.org/docs/getting-started.html) - JS Framework
 * [Postgresql](https://www.postgresql.org/docs/) - Database
 
@@ -32,10 +32,22 @@ To get a development env running, install all the dependencies with:
 ```cmd
 composer install && npm install
 ```
+
+#### Dependencies
+```cmd
+npm install react-bootstrap bootstrap
+
+npm install axios --save
+
+npm install --save react-router-dom
+
+npm install react-pose --save
+```
+
 Don't forget to edit your .env file. If you do not have one:
 ```cmd
-cp .env .env.example
-``` 
+cp .env.example .env
+```
 And modify your credentials.
 Then generate your jwt key and your app key
 ```cmd
@@ -51,7 +63,7 @@ To start your PHP server use the command (*by default the server will start on l
 ```cmd
 php artisan serve
 ```
-You can specify a port by using 
+You can specify a port by using
 ```cmd
 php artisan serve --port=8080
 ```

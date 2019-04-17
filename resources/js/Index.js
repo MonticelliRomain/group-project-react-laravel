@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
-import { BrowserRouter as Router, Route, Link } from 'react-router-dom';
-import Routes from './Routes';
+import { HashRouter as Router } from 'react-router-dom';
+import Routes from './components/Routes';
 import NavbarContent from './components/navbar'
 import FooterContent from './components/footer'
 

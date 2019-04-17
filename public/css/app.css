@@ -16545,3 +16545,10 @@ readers do not read off random characters that represent icons */
   height: auto;
 }
 
+#mapid {
+  margin-left: auto;
+  margin-right: auto;
+  width: 720px;
+  height: 360px;
+}
+

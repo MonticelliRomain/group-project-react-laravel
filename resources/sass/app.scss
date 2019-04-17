@@ -16,6 +16,7 @@
 @import '~@fortawesome/fontawesome-free/scss/fontawesome';
 
 
+
 .navbar-laravel {
   background-color: #9191A0;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.04);
@@ -127,3 +128,10 @@
   max-width: 100%;
   height: auto;
 }
+
+#mapid { 
+  margin-left: auto;
+  margin-right: auto;
+  width: 720px;
+  height: 360px;
+ }
