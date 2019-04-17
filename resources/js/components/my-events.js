@@ -1,11 +1,14 @@
-import React, { Component } from 'react'
+import React, { Component } from 'react';
 import { appGetMyEvent } from './util/helpers';
 import CarouselContent from './util/carousel'
-import Jumbotron from 'react-bootstrap/Jumbotron'
-import Button from 'react-bootstrap/Button'
-import axios from 'axios'
+import Jumbotron from 'react-bootstrap/Jumbotron';
+import Button from 'react-bootstrap/Button';
+import axios from 'axios';
 import posed from 'react-pose';
-import { BrowserRouter as Router, Route, Link, Switch } from 'react-router-dom'
+import { BrowserRouter as Router, Route, Link, Switch } from 'react-router-dom';
+
+// import components
+import MediaPlayer from './util/MediaPlayer';
 
 const Box = posed.div({
   hoverable: true,
@@ -37,6 +40,7 @@ export default class MyEvents extends Component {
 
   /*rendering content*/
   render() {
+    console.log(this.state);
     const { eventList } = this.state;
     return (
       <div>
@@ -47,7 +51,7 @@ export default class MyEvents extends Component {
               <Box className="border eventBox w-100 bg-secondary text-light my-3 p-3 eventBox">
               <p className="border boxDate">{item.date_event}</p>
               <div className="imgDiv border">
-            <img className="imgDisplay" src={item.image_url} alt="image event"/>
+              <MediaPlayer package={item}  className="imgDisplay"/>
             </div>
                 <h1 className="eventTitle ">{item.name}</h1>
                 <div className="border boxDescription">

@@ -1,5 +1,4 @@
 <?php
-
 namespace App\Http\Controllers;
 
 use App\listOfParticipant;
@@ -27,10 +26,24 @@ class ListOfParticipantController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request, $id)
+    public function store(Event $event)
     {
-        $sub = DB::insert('insert into list_of_participants (participant, event) values (?, ?)',
-                [auth('api')->user()->id, $id]);
+        
+        $userEvent = new listOfParticipant;
+        $test = json_decode(DB::table('list_of_participants')
+        ->select('participant')
+        ->where('event', '=', $event->id)
+        ->get());
+        
+        if ($test != NULL && ($test[0]->participant === auth('api')->user()->id)) {
+            return response()->json([
+                'message' => 'You are already suscribed!']);
+        }
+        $userEvent['event'] = $event->id;
+        $userEvent['participant'] = auth('api')->user()->id;
+        $userEvent->save();
+
+
         return response()->json([
             'message' => 'Inscription successful'
         ]);
@@ -55,6 +68,7 @@ class ListOfParticipantController extends Controller
     }
 
     public function myParticipation(Request $request){
+        
         $events = DB::table('list_of_participants')
             ->join('users','list_of_participants.participant', '=', 'users.id')
             ->join('events','list_of_participants.event', '=', 'events.id')
