@@ -2,8 +2,6 @@ import React, { Component } from 'react';
 
 export default class OpenStreetMap extends Component {
   componentDidMount(){
-    console.log('componentDidMount',this.props);
-    console.log(this.props.address, " ", encodeURIComponent(this.props.address));
     const mapDiv = document.getElementById(`${this.props.mapId}`);
     this.resize(mapDiv);
     window.addEventListener('resize', () => this.resize(mapDiv));
@@ -14,12 +12,11 @@ export default class OpenStreetMap extends Component {
       return;
     document.getElementById(`${this.props.mapId}`).innerHTML = '';
     const map = new OpenLayers.Map(this.props.mapId);
-    console.log(map);
     map.addLayer(new OpenLayers.Layer.OSM());
 
     const response = await fetch('https://nominatim.openstreetmap.org/search?format=json&q='+encodeURIComponent(this.props.address));
-    
-    
+
+
     const json = await response.json();
     const lonLat = new OpenLayers.LonLat(json[0].lon, json[0].lat)
       .transform(

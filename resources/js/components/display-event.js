@@ -89,8 +89,11 @@ export default class DisplayEvent extends Component {
                   <MediaPlayer package={item} className="imgDisplaySingle ml-auto mr-auto" />
                 </div>
                   <div className="mt-5 text-center boxDescriptionSingle shadow">
-                    {item.description}
-                    <OpenStreetMap address="rue de la forêt 110, 4100 Seraing" className="map-placeholder" mapId={`event-${this.state.idEvent}-map`}/>
+                    <p>{item.description}</p>
+                    <p>{item.address}</p>
+                  </div>
+                  <div className="mt-5 text-center boxDescriptionSingle shadow">
+                    <OpenStreetMap address={item.address} className="map-placeholder" mapId={`event-${this.state.idEvent}-map`}/>
                   </div>
                 <p className="boxDate shadow text-center my-3">Added By: {item.author}</p>
                 <div className="p-col-12 mt-3">

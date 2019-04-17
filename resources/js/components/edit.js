@@ -77,10 +77,8 @@ export default class DisplayEvent extends Component {
 
   /* date conversion + submit*/
     handleSubmit() {
-      //console.log(JSON.stringify(this.state.image_url));
       let urlToSend = this.state.image_url;
       if (urlToSend === ""){
-        //console.log("no img");
         urlToSend = "logo";
       }
       let convertedDate = convertDate (this.state.date_event);
@@ -94,7 +92,6 @@ export default class DisplayEvent extends Component {
         convertedReminder = "";
       }
       let myJSON = { "name": this.state.name, "date_event": convertedDate , "description": this.state.description, "reminder": convertedReminder, "image_url": urlToSend}
-      //console.log(myJSON);
       event.preventDefault()
       updateEvent(this.state.idEvent,myJSON);
     }//\end fct handleSubmit

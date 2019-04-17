@@ -34,6 +34,7 @@ export default class Create extends Component {
     this.state = {
       name: "",
       description: "",
+      address: "",
       image_url: "",
       file:"",
       imagePreviewUrl:"",
@@ -114,12 +115,12 @@ export default class Create extends Component {
       "name": this.state.name,
       "date_event": convertedDate,
       "description": this.state.description,
+      "address": this.state.address,
       "reminder": convertedReminder,
       "image_url": image_url,
       "media_type": this.state.media_pick
     }
     event.preventDefault()
-    // console.log(myJSON);
     appAddEvent(myJSON);
   }//\end fct handleSubmit
 
@@ -155,6 +156,14 @@ export default class Create extends Component {
               name="description"
               placeholder="your event description"
               as="textarea" rows="10"
+              onChange={this.handleChange}
+            />
+          </Form.Group>
+          <Form.Group controlId="exampleForm.ControlTextarea1">
+            <Form.Label>Address</Form.Label>
+            <Form.Control
+              name="address"
+              placeholder="your event address"
               onChange={this.handleChange}
             />
           </Form.Group>

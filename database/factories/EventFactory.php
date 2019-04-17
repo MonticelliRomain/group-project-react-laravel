@@ -7,6 +7,7 @@ $factory->define(App\Event::class, function (Faker $faker) {
         'name' => $faker->sentence(),
         'date_event' => $faker->dateTime(),
         'description' => $faker->text(),
+        'address' => 'Rue de Mulhouse 36, 4020 Liège',
         'reminder' => $faker->dateTime(),
         'author' =>factory ('App\User')->create()->id,
         'media_type' => 'image',
