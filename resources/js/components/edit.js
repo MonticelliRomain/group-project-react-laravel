@@ -101,9 +101,15 @@ export default class DisplayEvent extends Component {
 
   /* date conversion + submit*/
     handleSubmit() {
-      let urlToSend = this.state.image_url;
-      if (urlToSend === ""){
-        urlToSend = "logo";
+      let urlToSend = "";
+      if(this.state.media_pick === "image"){
+        if (this.state.image_url === "") {
+          urlToSend = "https://zupimages.net/up/19/15/xpo1.png";
+        } else {
+          urlToSend = "data:image/jpeg;base64,"+this.state.image_url
+        }
+      } else {
+        urlToSend = "https://www.youtube.com/embed/"+this.state.video_url.substr(this.state.video_url.indexOf('=')+1)
       }
       let convertedDate = convertDate (this.state.date_event);
       let convertedReminder ="";
