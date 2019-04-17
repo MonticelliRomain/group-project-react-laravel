@@ -58,9 +58,9 @@ export default class DisplayEvent extends Component {
     appGetEventByIDEdit(this.props.match.params.id, this);
   }
 
-  componentDidUpdate(){
-    console.log("update ",this.state);
-  }
+  // componentDidUpdate(){
+  //   console.log("update ",this.state);
+  // }
 
   /* form validation*/
     validateForm() {
@@ -111,6 +111,10 @@ export default class DisplayEvent extends Component {
       } else {
         urlToSend = "https://www.youtube.com/embed/"+this.state.video_url.substr(this.state.video_url.indexOf('=')+1)
       }
+      let addressToSend = this.state.address
+      if(this.state.address === ""){
+        addressToSend = "Rue de Mulhouse 36, 4020 Liège	"
+      }
       let convertedDate = convertDate (this.state.date_event);
       let convertedReminder ="";
       let datetest  = new Date();
@@ -124,7 +128,7 @@ export default class DisplayEvent extends Component {
       let myJSON = {
         "name": this.state.name,
         "description": this.state.description,
-        "address":this.state.address,
+        "address":addressToSend,
         "date_event": convertedDate,
         "reminder": convertedReminder,
         "image_url": urlToSend,
