@@ -53,16 +53,11 @@ export default class DisplayAll extends Component {
   }//\constructor
 
   componentDidMount() {
-    //console.log(this);
     appGetFutureEvent(this);
-    //console.log("token-storage: "+JSON.parse(sessionStorage.getItem("token-storage")));
-    //console.log("user-id-storage: "+JSON.parse(sessionStorage.getItem("user-id-storage")));
-    //console.log("user-name-storage: "+JSON.parse(sessionStorage.getItem("user-name-storage")));
   }
 
   /*rendering content*/
   render() {
-    // console.log(this.state);
     const { eventList } = this.state;
     return (
       <div>

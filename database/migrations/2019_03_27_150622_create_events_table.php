@@ -20,6 +20,7 @@ class CreateEventsTable extends Migration
             $table->dateTime('date_event');
             $table->integer('author');
             $table->text('description')->nullable();
+            $table->text('address');
             $table->dateTime('reminder')->nullable();
             $table->string('media_type');
             $table->text('image_url')->nullable();

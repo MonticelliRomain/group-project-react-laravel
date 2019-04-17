@@ -40,7 +40,6 @@ export default class MyParticipation extends Component {
 
   /*rendering content*/
   render() {
-    console.log(this.state);
     const { eventList } = this.state;
     return (
       <div>

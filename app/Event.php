@@ -12,6 +12,7 @@ class Event extends Model
         'date_event',
         'author',
         'description',
+        'address',
         'reminder',
         'image_url',
         'media_type'
