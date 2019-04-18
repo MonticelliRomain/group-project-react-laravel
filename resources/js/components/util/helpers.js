@@ -277,11 +277,15 @@ export function appGetContent(response, eventList) {
   }
 
   eventList.setState({
+    id: response.data.event[0].id,
     name: response.data.event[0].name,
     description: response.data.event[0].description,
-    image_url: response.data.event[0].image_url,
+    address: response.data.event[0].address,
+    imagePreviewUrl: response.data.event[0].image_url,
+    media_pick : response.data.event[0].media_type,
     date_event: eventDate,
     reminder: reminderDate,
+
   })
 }
 
@@ -312,7 +316,7 @@ export function appAddEvent(myJSON) {
           }
         },
         callback: function (result) {
-          window.location = '/';
+          window.location = '/my-events';
         }
       });
     })
@@ -348,7 +352,7 @@ export function updateEvent(eventID, myJSON) {
           }
         },
         callback: function (result) {
-          window.location = '/';
+          window.location = '/my-events';
         }
       });
     })

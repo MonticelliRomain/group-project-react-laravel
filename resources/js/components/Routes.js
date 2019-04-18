@@ -16,6 +16,7 @@ import Logout from './logout';
 import SubscriptionEvent from './subscription-event';
 import UnsubscriptionEvent from './unsuscription-event';
 import Home from './Home'
+import Invitations from './Invitations';
 
 const RouteContainer = posed.div({
   enter: { x:0, opacity: 1, delay: 100, beforeChildren: true },
@@ -42,6 +43,7 @@ const Routes = () => (
         <Route exact path='/my-participations' component={MyParticipation} />
         <Route exact path='/subscription-event' component={SubscriptionEvent} />
         <Route exact path='/unsuscription-event' component={UnsubscriptionEvent} />
+        <Route exact path='/invitations' component={Invitations} />
       </Switch>
     </RouteContainer>
   </PoseGroup>
