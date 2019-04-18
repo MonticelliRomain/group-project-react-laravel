@@ -1,4 +1,10 @@
 {
+  "name": "myapp",
+  "description": "a really cool app",
+  "version": "1.0.0",
+  "engines": {
+    "node": "10.3.0"
+  },
   "private": true,
   "scripts": {
     "dev": "npm run development",
@@ -40,4 +46,5 @@
     "react-pose": "^4.0.8",
     "react-router-dom": "^5.0.0"
   }
+  
 }
