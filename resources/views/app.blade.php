@@ -21,7 +21,7 @@
         
     </head>
     <body>
-        <script src="http://www.openlayers.org/api/OpenLayers.js"></script>
+        <script src="https://www.openlayers.org/api/OpenLayers.js"></script>
         <div id="example"></div>
         
         <script src="{{ asset('js/app.js') }}"></script>
