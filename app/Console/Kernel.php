@@ -30,6 +30,8 @@ class Kernel extends ConsoleKernel
      */
     protected function schedule(Schedule $schedule)
     {
+      $schedule->call(function(){
+
 
         \Log::info('In Kernel schedule function');
         $reminder = DB::table('events')
@@ -49,7 +51,9 @@ class Kernel extends ConsoleKernel
         foreach ($reminder as $reminders) {
             \Log::info($reminders->email);
             Mail::to($reminders->email)->send(new Reminder($reminders));
+
         }
+      })->everyMinute();
     }
 
     /**
