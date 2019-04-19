@@ -50,12 +50,12 @@
 </head>
 
 <body>
-    <h2>Hello random !</h2>
+    <h2>Hello magnificient traveler !</h2>
     <br />
     <img src="https://zupimages.net/up/19/15/xpo1.png" alt="logo EventDab" width="100px" height="100px">
     <article>
         <p>
-         This is an invitation for an event you're interested to.
+         This is an invitation for an event you're interested to from {{$name}}.
         </p>
         <p>
             We'll hope you'll find the best events around you or you'll share your events with the <i>EventDab

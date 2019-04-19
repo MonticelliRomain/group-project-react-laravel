@@ -10,14 +10,16 @@ class Invitation extends Mailable
     use Queueable, SerializesModels;
 
     public $user;
+    public $name;
     /**
      * Create a new message instance.
      *
      * @return void
      */
-    public function __construct($user)
+    public function __construct($user, $name)
     {
         $this->user = $user;
+        $this->name = $name;
     }
     /**
      * Build the message.
