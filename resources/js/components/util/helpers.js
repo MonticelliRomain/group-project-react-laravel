@@ -35,7 +35,7 @@ export function appRegister(myJSON) {
         },
         callback: function (result) {
           console.log('This was logged in the callback: ' + result);
-          window.location = '/login';
+          window.location = '/#/login';
         }
       });
 
@@ -71,6 +71,25 @@ export function appGetUser() {
     })
 }
 
+/* List of users - GET - listOfUsers*/
+export function appGetUsersList(usersList){
+  axios(
+    {
+    method: 'GET',
+    url: "/api/listOfUsers",
+    headers:
+      {
+        'Content-Type': "application/json",
+        'Authorization': "Bearer " + JSON.parse(sessionStorage.getItem("token-storage"))
+      },
+    })
+    .then(response => usersList.setState({
+    usersList: response.data
+    }))
+    .catch(function (error) {
+    console.log(error);
+  })
+}
 /*Login -POST - user/pw */
 export function appLogin(myJSON) {
   axios.post("api/login", myJSON)
@@ -316,7 +335,7 @@ export function appAddEvent(myJSON) {
           }
         },
         callback: function (result) {
-          window.location = '/my-events';
+          window.location = '/#/my-events';
         }
       });
     })
@@ -352,7 +371,7 @@ export function updateEvent(eventID, myJSON) {
           }
         },
         callback: function (result) {
-          window.location = '/my-events';
+          window.location = '/#/my-events';
         }
       });
     })
