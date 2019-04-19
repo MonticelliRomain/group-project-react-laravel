@@ -21,8 +21,17 @@ from add event in postman
 	/>
 </Form.Group>
 
-Venez manger les bons spaghettis bolo de Béatrice.
 
-On va boire aussi (Joey amènera de la cara).
-
-Possibilité de dormir sur place dans le panier du chien.
+// displayForm(j){
+//   let i = 0;
+//   for(let i = 0; i<j; i++){
+//     return(
+//       <span className="p-float-label">
+//         <InputText id="in" value={this.state.value} onChange={(e) => this.setState({value: e.target.value})} />
+//         <label htmlFor="in">e-mail address</label>
+//         <Button label="Add" className="p-button-secondary" onClick={this.handleAdd} />
+//         <Button label="-" className="p-button-secondary" onClick={this.handleRemove} />
+//       </span>
+//     );
+//   };
+// };
