@@ -58,7 +58,7 @@
             You have received an invitation from '' but you don't seem to possess an account. Please register to https://jpbrite.herokuapp.com/create-account.
         </p>
         <p>
-             This is an invitation for an event you could be interested to {{$eventURL}}.
+             This is an invitation for an event you could be interested to {{$eventURL}} from {{$name}}.
         </p>
         <p>
             We'll hope you'll find the best events around you or you'll share your events with the <i>EventDab

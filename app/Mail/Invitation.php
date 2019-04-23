@@ -10,15 +10,17 @@ class Invitation extends Mailable
     use Queueable, SerializesModels;
 
     public $user;
+    public $name;
     public $eventURL;
     /**
      * Create a new message instance.
      *
      * @return void
      */
-    public function __construct($user, $id)
+    public function __construct($user, $id, $name)
     {
         $this->user = $user;
+        $this->name = $name;
         $this->eventURL = 'https://jpbrite.herokuapp.com/display-event-' . $id;
     }
     /**

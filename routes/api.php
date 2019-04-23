@@ -41,7 +41,7 @@ Route::middleware('auth:api')->put('/event/{id}', 'EventController@update')->nam
 //post event
 Route::middleware('auth:api')->post('/event', 'EventController@store')->name('event.create');
 //post event/emailFriends
-Route::middleware('auth:api')->post('/event/email', 'EventController@emailFriends')->name('event.emailFriends');
+Route::middleware('auth:api')->post('/event/email/{id}/{name}', 'EventController@emailFriends')->name('event.emailFriends');
 
 //------ ROUTE LIST OF PARTICIPANT ------
 //get my participation to event
