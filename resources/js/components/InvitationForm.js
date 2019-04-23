@@ -16,7 +16,7 @@ handleChange(event) {
   if (["toMail"].includes(event.target.className) ) {
       let email = [...this.state.email];
       email[event.target.dataset.id][event.target.className] = event.target.value.toLowerCase();
-      this.setState({ email }, () => console.log(this.state.email));
+      this.setState({ email }, () => console.log("mail ",this.state.email));
     }
     else {
       this.setState({ [e.target.toMail]: e.target.value.toLowerCase() });
