@@ -416,4 +416,38 @@ export function unsuscribeEvent(eventID) {
       console.log(response);
     })
 }
+
+/*emailToFriends -POST - name/myJSON */
+export function appMailToFriends(name, myJSON) {
+  console.log(name, myJSON);
+  axios.post("api/event/email/"+name, myJSON)
+    .then(function (response) {
+      sessionStorage.setItem('token-storage', JSON.stringify(response.data.access_token));
+      bootbox.confirm({
+        message: "Mails successfully sent !",
+        buttons: {
+          confirm: {
+            label: 'Continue',
+            className: 'btn-success w-100'
+          },
+          cancel: {
+            label: 'No',
+            className: 'd-none'
+          }
+        },
+        callback: function (result) {
+          console.log('This was logged in the callback: ' + result);
+          appGetUser();
+        }
+      });
+      //fct to retrieve some datas id/name
+
+    })
+    .catch(function (error) {
+      bootbox.alert({
+        message: "Problem, emails couldn't be sent !",
+        backdrop: true
+      });
+    });
+}
 //\API REQUESTS

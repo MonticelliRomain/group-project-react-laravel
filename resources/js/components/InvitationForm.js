@@ -73,7 +73,7 @@ render() {
           })
         }
         <div onClick={this.addMail} value="addMail">Add new recipient</div>
-        <input type="submit" value="Submit" />
+        <input type="submit" value="Submit" onClick={handleSubmit}/>
       </form>
     )
   }//\render

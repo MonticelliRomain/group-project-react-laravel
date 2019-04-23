@@ -44,7 +44,6 @@ export default class Invitations extends Component {
         </div>
         <div id="e-mail_container" className="mt-5 text-center boxDescriptionSingle shadow">
           <InvitationForm />
-          <Button label="Send" onClick={this.handleSend} />
         </div>
       </>
     )
