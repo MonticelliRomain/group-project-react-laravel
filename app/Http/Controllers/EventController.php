@@ -55,7 +55,7 @@ class EventController extends Controller
         ]);
     }
 
-    public function emailFriends(Request $request, $name){
+    public function emailFriends(Request $request, $id, $name){
 
         $emails = $request->email;
 
@@ -63,12 +63,12 @@ class EventController extends Controller
             $user =json_decode(User::where('email', '=', $email)->get());
 
             if($user !== []){
-                Mail::to($email)->send(new Invitation($user, $name));
+                Mail::to($email)->send(new Invitation($user, $id, $name));
 
             }
 
             else {
-                Mail::to($email)->send(new InvitationToStranger($name));
+                Mail::to($email)->send(new InvitationToStranger($id, $name));
 
             }
         }
