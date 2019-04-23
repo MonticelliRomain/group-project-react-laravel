@@ -18,13 +18,14 @@
                  crossorigin=""/>
 
         <!-- <link rel="stylesheet" href="https://unpkg.com/leaflet-geosearch@2.6.0/assets/css/leaflet.css"/> -->
-        
+
+        <script src="/js/OpenLayers.js"></script>
     </head>
     <body>
         <script src="https://www.openlayers.org/api/OpenLayers.js"></script>
         <div id="example"></div>
-        
+
         <script src="{{ asset('js/app.js') }}"></script>
-        
+
     </body>
     </html>

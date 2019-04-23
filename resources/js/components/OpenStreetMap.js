@@ -12,7 +12,11 @@ export default class OpenStreetMap extends Component {
       return;
     document.getElementById(`${this.props.mapId}`).innerHTML = '';
     const map = new OpenLayers.Map(this.props.mapId);
-    map.addLayer(new OpenLayers.Layer.OSM());
+    map.addLayer(new OpenLayers.Layer.OSM('osmLayer', [
+      'https://a.tile.openstreetmap.org/${z}/${x}/${y}.png',
+      'https://b.tile.openstreetmap.org/${z}/${x}/${y}.png',
+      'https://c.tile.openstreetmap.org/${z}/${x}/${y}.png',
+    ]));
 
     const response = await fetch('https://nominatim.openstreetmap.org/search?format=json&q='+encodeURIComponent(this.props.address));
 
