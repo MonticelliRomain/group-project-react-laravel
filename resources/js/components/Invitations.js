@@ -16,6 +16,7 @@ export default class Invitations extends Component {
     this.state = {
       usersList:[],
       formRows: 1,
+      idEvent: this.props.match.params.id
     };
   };
 
@@ -43,7 +44,7 @@ export default class Invitations extends Component {
           />
         </div>
         <div id="e-mail_container" className="mt-5 text-center boxDescriptionSingle shadow">
-          <InvitationForm />
+          <InvitationForm idEvent={this.state.idEvent}/>
         </div>
       </>
     )

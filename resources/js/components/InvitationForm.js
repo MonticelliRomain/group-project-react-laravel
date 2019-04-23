@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-// import { appSendMails } from './helpers';
+import { appMailToFriends } from './util/helpers';
 export default class Email extends Component {
 
 constructor(props) {
@@ -43,8 +43,9 @@ handleSubmit(event){
         }
       });
     });
-    let myJSON = { "eventId": this.props.idEvent, "eventName": this.props.nameEvent,"senderId": senderId, "senderName": senderName, "emailList": mailing}
-    appSendMails(this.props.idEvent, myJSON);
+    let myJSON = JSON.stringify({"email": mailing})
+    let id_name = this.props.idEvent+"/"+JSON.parse(senderName);
+    appMailToFriends(id_name, myJSON);
 }
 
 render() {

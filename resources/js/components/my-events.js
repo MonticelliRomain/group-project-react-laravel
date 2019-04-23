@@ -59,7 +59,7 @@ export default class MyEvents extends Component {
                 </div>
                 <p>
                 <Link variant="light" className="btn btn-light my-2 shadow" to={"/display-event-" + item.id} >More informations</Link>
-                <Link variant="light" className="btn btn-light my-2 shadow" to={"/invitations"} >Invite your friends</Link>
+                <Link variant="light" className="btn btn-light my-2 shadow" to={"/invitations-" + item.id} >Invite your friends</Link>
                 </p>
               </Box>
             </div>

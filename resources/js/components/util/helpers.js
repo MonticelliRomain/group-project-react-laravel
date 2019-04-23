@@ -418,9 +418,19 @@ export function unsuscribeEvent(eventID) {
 }
 
 /*emailToFriends -POST - name/myJSON */
-export function appMailToFriends(name, myJSON) {
-  console.log(name, myJSON);
-  axios.post("api/event/email/"+name, myJSON)
+export function appMailToFriends(id_name, myJSON) {
+  console.log("api ",id_name, myJSON);
+  axios(
+    {
+      method: 'POST',
+      url: "api/event/email/" + id_name,
+      headers:
+      {
+        'Content-Type': "application/json",
+        'Authorization': "Bearer " + JSON.parse(sessionStorage.getItem("token-storage"))
+      },
+      data: myJSON
+    })
     .then(function (response) {
       sessionStorage.setItem('token-storage', JSON.stringify(response.data.access_token));
       bootbox.confirm({

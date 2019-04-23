@@ -43,7 +43,7 @@ const Routes = () => (
         <Route exact path='/my-participations' component={MyParticipation} />
         <Route exact path='/subscription-event' component={SubscriptionEvent} />
         <Route exact path='/unsuscription-event' component={UnsubscriptionEvent} />
-        <Route exact path='/invitations' component={Invitations} />
+        <Route exact path='/invitations-:id' component={Invitations} />
       </Switch>
     </RouteContainer>
   </PoseGroup>
