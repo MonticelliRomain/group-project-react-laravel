@@ -432,7 +432,6 @@ export function appMailToFriends(id_name, myJSON) {
       data: myJSON
     })
     .then(function (response) {
-      sessionStorage.setItem('token-storage', JSON.stringify(response.data.access_token));
       bootbox.confirm({
         message: "Mails successfully sent !",
         buttons: {
@@ -446,8 +445,7 @@ export function appMailToFriends(id_name, myJSON) {
           }
         },
         callback: function (result) {
-          console.log('This was logged in the callback: ' + result);
-          appGetUser();
+          window.location = '/#/my-events';
         }
       });
       //fct to retrieve some datas id/name
